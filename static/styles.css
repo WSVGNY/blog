@@ -1,0 +1,46 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+} 
+
+.picture {
+    max-width: 700;
+}
+
+.picture-vertical {
+    max-height: 700;
+}
+
+.thumbnail {
+    display: block;
+    width: 1em;
+    height: 1em;
+}
+
+.post:hover {
+    background-color: rgb(250, 250, 250);
+}
+
+.posts {
+    list-style-type: none;
+    padding: unset;
+}
+
+.imagecontainer {
+    width: fit-content;
+    margin: auto;
+    margin-top: 1em;
+}
+
+.scrollmenu {
+    margin-top: 1em;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.scrollcontent {
+    display:inline-block;
+    vertical-align: middle;
+    width: 100%;
+    text-align: center;
+ }

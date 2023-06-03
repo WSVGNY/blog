@@ -1,0 +1,19 @@
+<html>
+{{ partial "head" }}
+
+<body style="padding: 20; margin: auto; max-width: 720;">
+    {{ partial "header" . }} <!-- Adding "." gives the context to the partial -->
+    <div>
+        <ul class="posts">
+            {{ range .Pages }}
+            <li style="display: flex;">
+                <span style="flex: 0 0 130px;"><i>{{ dateFormat "Jan 2, 2006" .Date }}</i></span>
+                <a href="{{.Permalink}}" style="text-decoration: none;">{{.Title}}</a>
+            </li>
+            {{ end }}
+        </ul>
+    </div>
+    {{ partial "footer" }}
+</body>
+
+</html>

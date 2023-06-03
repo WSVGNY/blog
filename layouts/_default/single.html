@@ -1,0 +1,15 @@
+<html>
+{{ partial "head" }}
+
+<body style="padding: 20; margin: auto; max-width: 720;">
+    {{ partial "header" . }}
+    <div>
+        <h1>{{.Title}}</h1>
+        <div style="color:grey; font-size:16px;">{{ dateFormat "Jan 2, 2006" .Date }}</div>
+        <div style="color:grey; font-size:16px;">{{if .Params.author}}Author: {{.Params.Author}}{{end}}</div>
+        {{.Content}}
+    </div>
+    {{ partial "footer" }}
+</body>
+
+</html>
