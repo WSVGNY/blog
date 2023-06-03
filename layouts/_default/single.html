@@ -1,12 +1,11 @@
 <html>
 {{ partial "head" }}
 
-<body style="padding: 20; margin: auto; max-width: 720;">
+<body class="body-container">
     {{ partial "header" . }}
     <div>
         <h1>{{.Title}}</h1>
-        <div style="color:grey; font-size:16px;">{{ dateFormat "Jan 2, 2006" .Date }}</div>
-        <div style="color:grey; font-size:16px;">{{if .Params.author}}Author: {{.Params.Author}}{{end}}</div>
+        <p>{{ dateFormat "Jan 2, 2006" .Date }}</p>
         {{.Content}}
     </div>
     {{ partial "footer" }}

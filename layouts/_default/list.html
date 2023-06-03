@@ -1,14 +1,14 @@
 <html>
 {{ partial "head" }}
 
-<body style="padding: 20; margin: auto; max-width: 720;">
+<body class="body-container">
     {{ partial "header" . }} <!-- Adding "." gives the context to the partial -->
     <div>
-        <ul class="posts">
+        <ul class="post-list">
             {{ range .Pages }}
-            <li style="display: flex;">
-                <span style="flex: 0 0 130px;"><i>{{ dateFormat "Jan 2, 2006" .Date }}</i></span>
-                <a href="{{.Permalink}}" style="text-decoration: none;">{{.Title}}</a>
+            <li class="post-list-item">
+                <span class="date"><i>{{ dateFormat "Jan 2, 2006" .Date }}</i></span>
+                <a class="title" href="{{.Permalink}}">{{.Title}}</a>
             </li>
             {{ end }}
         </ul>
