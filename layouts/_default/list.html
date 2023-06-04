@@ -4,6 +4,7 @@
 <body class="body-container">
     {{ partial "header" . }} <!-- Adding "." gives the context to the partial -->
     <div>
+        <h2>All Images</h2>
         <ul class="post-list">
             {{ range .Pages }}
             <li class="post-list-item">

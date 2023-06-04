@@ -4,8 +4,8 @@
 <body class="body-container">
     {{ partial "header" . }}
     <div>
-        <h1>{{.Title}}</h1>
-        <p>{{ dateFormat "Jan 2, 2006" .Date }}</p>
+        <h2>{{.Title}}</h2>
+        <p><i>{{ dateFormat "Jan 2, 2006" .Date }}</i></p>
         {{.Content}}
     </div>
     {{ partial "footer" }}
