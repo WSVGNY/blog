@@ -3,10 +3,10 @@
 
 <body class="body-container">
     {{ partial "header" . }} <!-- Adding "." gives the context to the partial -->
-    <h2>Latest Images</h2>
     {{ range ( where .Site.RegularPages.ByDate.Reverse "Type" "posts" | first 1 ) }} <!-- Gets list of posts -->
+    <p>Latest images : <a class="title" href="{{.Permalink}}">{{.Title}}</a></p>
     {{.Content}}
-    <p><i>See post : <a class="title" href="{{.Permalink}}">{{.Title}}</a></i></p>
+
     {{ end }}
     {{ partial "footer" }}
 </body>
