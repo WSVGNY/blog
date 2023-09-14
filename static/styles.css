@@ -1,11 +1,11 @@
 * {
-    font-family: Verdana, Geneva, Tahoma, sans-serif
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif */
 }
 
 .body-container {
     padding: 20;
     margin: auto;
-    max-width: 720;
+    max-width: 1600;
 }
 
 .header {
@@ -16,7 +16,7 @@
 .footer {
     margin:auto;
     text-align: center;
-    padding: 25 0;
+    padding: 25 0 0 0;
 }
 
 .navbar-item {
@@ -54,11 +54,11 @@
 }
 
 .picture {
-    max-width: 700;
+    /* max-width: 700; */
 }
 
 .picture-vertical {
-    max-height: 700;
+    max-height: 720;
 }
 
 .thumbnail {
@@ -70,7 +70,7 @@
 .imagecontainer {
     width: fit-content;
     margin: auto;
-    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .scrollmenu {

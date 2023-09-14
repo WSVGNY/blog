@@ -1,20 +1,22 @@
 <html>
 {{ partial "head" }}
 
-<body class="body-container">
-    {{ partial "header" . }} <!-- Adding "." gives the context to the partial -->
-    <div>
-        <p>All Images</p>
-        <ul class="post-list">
-            {{ range .Pages }}
-            <li class="post-list-item">
-                <span class="date"><i>{{ dateFormat "Jan 2, 2006" .Date }}</i></span>
-                <a class="title" href="{{.Permalink}}">{{.Title}}</a>
-            </li>
-            {{ end }}
-        </ul>
+<body>
+    <div class="container">
+        {{ partial "header" . }} <!-- Adding "." gives the context to the partial -->
+        <div>
+            <h2>All Images</h2>
+            <ul class="post-list">
+                {{ range .Pages }}
+                <li class="post-list-item">
+                    <span class="date"><i>{{ dateFormat "Jan 2, 2006" .Date }}</i></span>
+                    <a class="title" href="{{.Permalink}}">{{.Title}}</a>
+                </li>
+                {{ end }}
+            </ul>
+        </div>
+        {{ partial "footer" }}
     </div>
-    {{ partial "footer" }}
 </body>
 
 </html>

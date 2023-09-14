@@ -2,16 +2,16 @@
 {{ $images := .Page.Resources.Match (.Get 0) }}
 {{ range $images }}
 {{ if in (slice "jpeg" "png") .MediaType.SubType }}
-<div class="imagecontainer">
+<div class="row imagecontainer">
     {{ if lt .Height .Width }}
     <!-- Horizontal image -->
     {{ $image := .Resize "1200x webp"}}
-    <img src="{{ $image.RelPermalink }}" class=" picture">
+    <img src="{{ $image.RelPermalink }}" class="u-max-full-width">
     {{ else }}
     <!-- Vertical image -->
     {{ $image := .Resize "x1200 webp" }}
-    <img src="{{ $image.RelPermalink }}" class=" picture-vertical">
-    {{ end }}
+    <img src="{{ $image.RelPermalink }}" class="picture-vertical u-max-full-width">
     {{ end }}
 </div>
+{{ end }}
 {{ end }}

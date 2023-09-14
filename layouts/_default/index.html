@@ -1,14 +1,18 @@
 <html>
 {{ partial "head" }}
 
-<body class="body-container">
-    {{ partial "header" . }} <!-- Adding "." gives the context to the partial -->
-    {{ range ( where .Site.RegularPages.ByDate.Reverse "Type" "posts" | first 1 ) }} <!-- Gets list of posts -->
-    <p>Latest images : <a class="title" href="{{.Permalink}}">{{.Title}}</a></p>
-    {{.Content}}
+<body>
+    <div class="container">
+        {{ partial "header" . }} <!-- Adding "." gives the context to the partial -->
 
-    {{ end }}
-    {{ partial "footer" }}
+        <!-- Display latest images on the home page-->
+        {{ range ( where .Site.RegularPages.ByDate.Reverse "Type" "posts" | first 1 ) }} <!-- Gets list of posts -->
+        <p>Images below are from the latest gallery: <a class="title" href="{{.Permalink}}">{{.Title}}.</a></p>
+        {{.Content}}
+        {{ end }}
+
+        {{ partial "footer" }}
+    </div>
 </body>
 
 </html>

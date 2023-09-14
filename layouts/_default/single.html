@@ -1,14 +1,14 @@
 <html>
 {{ partial "head" }}
 
-<body class="body-container">
-    {{ partial "header" . }}
-    <div>
+<body>
+    <div class="container">
+        {{ partial "header" . }}
         <h2>{{.Title}}</h2>
         <p><i>{{ dateFormat "Jan 2, 2006" .Date }}</i></p>
         {{.Content}}
+        {{ partial "footer" }}
     </div>
-    {{ partial "footer" }}
 </body>
 
 </html>
