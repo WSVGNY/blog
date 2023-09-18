@@ -1,18 +1,14 @@
 <!-- @params path : image directory relative path -->
 <!-- http://jsfiddle.net/YbrX3/ -->
-{{ $images := .Page.Resources.Match (.Get 0) }}
-{{ range $images }}
-{{ if in (slice "jpeg" "png") .MediaType.SubType }}
-<div class="row imagecontainer">
-    {{ if lt .Height .Width }}
-    <!-- Horizontal image -->
-    {{ $image := .Resize "800x webp"}} <!-- original is 1200x -->
-    <img src="{{ $image.RelPermalink }}" class="u-max-full-width">
-    {{ else }}
-    <!-- Vertical image -->
-    {{ $image := .Resize "x800 webp" }}
-    <img src="{{ $image.RelPermalink }}" class="picture-vertical u-max-full-width">
+<!-- https://gohugo.io/content-management/image-processing/ -->
+
+<div class="picture-list">
+    {{ $images := .Page.Resources.Match (.Get 0) }}
+    {{ range $images }}
+    {{ if in (slice "jpeg" "png") .MediaType.SubType }}
+    <div class="imagecontainer">
+        {{ partial "picture" .}}
+    </div>
+    {{ end }}
     {{ end }}
 </div>
-{{ end }}
-{{ end }}

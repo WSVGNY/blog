@@ -4,3 +4,7 @@
 <span style="flex: 0 0 40px;">
     <img src="{{ $thumb.RelPermalink }}" class="thumbnail">
 </span>
+
+{{ $thumb := (where .Resources "MediaType.SubType" "in" (slice "jpeg" "png") | first 1) }}
+{{$thumb := index $thumb 0}}
+<img src="{{ $thumb.RelPermalink }}" class="u-max-full-width">

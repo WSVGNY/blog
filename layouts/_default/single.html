@@ -4,8 +4,7 @@
 <body>
     <div class="container">
         {{ partial "header" . }}
-        <p style="color: gray; margin-bottom: 0;">{{ dateFormat "Jan 2, 2006" .Date }}</p>
-        <h2>{{.Title}}</h2>
+        <p style="color: gray;">{{ dateFormat "Jan 2, 2006" .Date }} // {{.Title}}</p>
         {{.Content}}
         <!-- Display latest galleries -->
         {{ partial "latest-galleries" .}}

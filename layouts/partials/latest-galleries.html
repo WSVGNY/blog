@@ -1,5 +1,5 @@
 <!-- Displays latest galleries -->
-<p style="color: gray; margin-bottom: 0;">Lastest Galleries</p>
+<p style="color: gray; margin-bottom: 0;">More</p>
 <ul class="post-list">
     {{ range ( where .Site.RegularPages.ByDate.Reverse "Type" "posts" | first 3 ) }} <!-- Gets last 5 posts -->
     <li class="post-list-item">

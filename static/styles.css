@@ -1,23 +1,30 @@
-.header {
+.logo-title {
     margin-right: 12;
     color: white;
     text-decoration: none;
     font-weight: bold;
 }
 
-.header:hover {
+.logo-title:hover {
     color: white;
 }
 
+.header {
+    margin-bottom: 1rem;
+    position: sticky;
+    top: 0rem;
+}
+
 .footer {
+    position: sticky;
+    bottom: 0;
     background-color: black;
-    margin: 25 0 0 0;
+    margin: 1rem 0;
 }
 
 .navbar {
     padding: 0 0.25em;
     background-color: black;
-    margin-bottom: 0.5em;
 }
 
 .navbar-item {
@@ -61,12 +68,8 @@
     font-size:16px;
 }
 
-.picture {
-    /* max-width: 700; */
-}
-
-.picture-vertical {
-    max-height: 720;
+.picture-height-limit {
+    max-height: 800;
 }
 
 .thumbnail {
@@ -78,8 +81,12 @@
 .imagecontainer {
     width: fit-content;
     margin: auto;
-    margin-bottom: 1em;
+    margin-bottom: 4rem;
 }
+
+/* .imagecontainer:last-of-type {
+    margin-bottom: 1rem;
+} */
 
 .scrollmenu {
     margin-top: 1em;

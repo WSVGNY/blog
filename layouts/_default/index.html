@@ -6,9 +6,10 @@
         {{ partial "header" . }} <!-- Adding "." gives the context to the partial -->
 
         <!-- Display latest images on the home page-->
-        {{ range ( where .Site.RegularPages.ByDate.Reverse "Type" "posts" | first 1 ) }} <!-- Gets latest post -->
-        <p style="color: gray; margin-bottom: 0;">Last Gallery // {{ dateFormat "Jan 2, 2006" .Date }}</p>
-        <h2>{{.Title}}</h2>
+        {{ range ( where .Site.RegularPages.ByDate.Reverse "Type" "posts" | first 1 ) }} <!-- Gets latest posts -->
+
+        <p style="color: gray;">Lastest // {{.Title}}</p>
+
         {{.Content}}
         {{ end }}
 
