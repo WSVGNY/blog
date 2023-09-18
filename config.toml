@@ -1,6 +1,6 @@
-baseURL = "http://example.org/"
+baseURL = "https://wsvgny.github.io/blog/"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "William Sevigny"
 [markup]
   [markup.goldmark]
     [markup.goldmark.parser]
