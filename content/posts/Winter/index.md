@@ -1,9 +1,8 @@
 ---
-title: "Vancouver under the snow"
-date: 2023-01-30T21:31:16-07:00
-draft: false
+title: "Vancouver Under the Snow"
+date: 2023-09-11
+draft: true
 ---
-
 
 {{< picture-list "images/group-3/*">}}
 
