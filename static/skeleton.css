@@ -47,6 +47,9 @@
   .columns:first-child {
     margin-left: 0; }
 
+  .four.columns                   { width: 30.6666666667%; }
+  .eight.columns                  { width: 65.3333333333%; }
+
 /* For devices larger than 400px */
 @media (min-width: 400px) {
   .container {
@@ -58,6 +61,9 @@
   .column:first-child,
   .columns:first-child {
     margin-left: 0; }
+
+  .four.columns                   { width: 30.6666666667%; }
+  .eight.columns                  { width: 65.3333333333%; }
 }
 
 /* For devices larger than 550px */
