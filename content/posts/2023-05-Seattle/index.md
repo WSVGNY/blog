@@ -1,7 +1,7 @@
 ---
 title: "When Amazon HQ Calls : Seattle"
 date: 2023-09-19
-draft: false
+draft: true
 ---
 {{< picture-list "images/group-a/*">}}
 

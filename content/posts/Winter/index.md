@@ -1,7 +1,7 @@
 ---
 title: "Vancouver Under the Snow"
 date: 2023-09-11
-draft: true
+draft: false
 ---
 
 {{< picture-list "images/group-3/*">}}
