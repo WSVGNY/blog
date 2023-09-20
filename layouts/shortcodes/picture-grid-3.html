@@ -2,15 +2,14 @@
 <!-- http://jsfiddle.net/YbrX3/ -->
 <div class="picture-grid">
     {{ $images := .Page.Resources.Match (.Get 0) }}
+    {{ $images := where $images ".MediaType.SubType" "in" (slice "jpeg" "png") }}
     <div class="row" style="display: flex; align-items: center;">
         {{ range $images | first 3 }}
-        {{ if in (slice "jpeg" "png") .MediaType.SubType }}
         <div class="one-third column">
             <div class="imagecontainer">
                 {{ partial "picture" .}}
             </div>
         </div>
-        {{ end }}
         {{ end }}
     </div>
 </div>

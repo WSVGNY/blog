@@ -69,7 +69,11 @@
 }
 
 .picture-height-limit {
-    max-height: 800;
+    max-height: 80rem;
+}
+
+.picture-width-limit {
+    max-width: 100rem;
 }
 
 .thumbnail {

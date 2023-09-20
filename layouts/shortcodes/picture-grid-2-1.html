@@ -3,13 +3,20 @@
 <div class="picture-grid">
     {{ $images := .Page.Resources.Match (.Get 0) }}
     {{ $images := where $images ".MediaType.SubType" "in" (slice "jpeg" "png") }}
+    {{ $imageLeft := index $images 0}}
+    {{ $imageRight := index $images 1}}
+
     <div class="row" style="display: flex; align-items: center;">
-        {{ range $images | first 2 }}
-        <div class="one-half column">
+        <div class="four columns">
             <div class="imagecontainer">
-                {{ partial "picture" .}}
+                {{ partial "picture" $imageLeft}}
             </div>
         </div>
-        {{ end }}
+
+        <div class="eight columns">
+            <div class="imagecontainer">
+                {{ partial "picture" $imageRight}}
+            </div>
+        </div>
     </div>
 </div>

@@ -1,16 +1,18 @@
 {{ with . }}
 {{ if lt .Height .Width }}
 <!-- Horizontal image -->
-{{ if eq .Exif.Tags.Orientation 8 }}
-<!-- Image is rotated 90 -->
-{{ $image := .Resize "x1200 webp q50 r90" }}
-<a href="{{ $image.RelPermalink }}" target="_blank"><img src="{{ $image.RelPermalink }}"
-        class="picture-height-limit u-max-full-width" data-bilderrahmen="gallery-{{$image.RelPermalink}}"></a>
-{{ else }}
-{{ $image := .Resize "1200x webp q50"}} <!-- original is 1200x -->
-<a href="{{ $image.RelPermalink }}" target="_blank"><img src="{{ $image.RelPermalink }}"
-        class="picture-height-limit u-max-full-width" data-bilderrahmen="gallery-{{$image.RelPermalink}}"></a>
-{{ end }}
+<div class="picture-width-limit">
+    {{ if eq .Exif.Tags.Orientation 8 }}
+    <!-- Image is rotated 90 -->
+    {{ $image := .Resize "x1200 webp q50 r90" }}
+    <a href="{{ $image.RelPermalink }}" target="_blank"><img src="{{ $image.RelPermalink }}"
+            class="picture-height-limit u-max-full-width" data-bilderrahmen="gallery-{{$image.RelPermalink}}"></a>
+    {{ else }}
+    {{ $image := .Resize "1200x webp q50"}} <!-- original is 1200x -->
+    <a href="{{ $image.RelPermalink }}" target="_blank"><img src="{{ $image.RelPermalink }}"
+            class="picture-height-limit u-max-full-width" data-bilderrahmen="gallery-{{$image.RelPermalink}}"></a>
+    {{ end }}
+</div>
 {{ else }}
 <!-- Vertical image -->
 {{ $image := .Resize "x1200 webp q50" }}

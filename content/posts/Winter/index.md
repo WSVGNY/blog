@@ -15,6 +15,6 @@ draft: false
 
 {{< picture-grid-2 "images/group-6/*">}}
 
-{{< picture-list "images/group-7/*">}}
+{{< picture-grid-2-1 "images/group-7/*">}}
 
 {{< picture-list "images/group-9/*">}}
