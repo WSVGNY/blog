@@ -39,7 +39,7 @@
 <div class="navbar">
     <nav>
         <span>
-            <a class="logo-title" href="/blog/">WILLIAM SEVIGNY</a>
+            <a class="logo-title" href="/blog/">William Sévigny</a>
             <a class="navbar-item" href="/blog/posts">All</a>
             <a class="navbar-item" href="/blog/about">About</a>
         </span>
@@ -48,16 +48,15 @@
     </header>
 </div>
         <p style="color: gray;">// About</p>
-        <p>William Sevigny<br>
-Software Developer<br>
-Vancouver, West End</p>
+        <p>Hi 👋</p>
+<p>I&rsquo;m William, a software developer currently enjoying life in Vancouver&rsquo;s West End.</p>
 
         <div class="footer">
     
 <div class="navbar">
     <nav>
         <span>
-            <a class="logo-title" href="/blog/">WILLIAM SEVIGNY</a>
+            <a class="logo-title" href="/blog/">William Sévigny</a>
             <a class="navbar-item" href="/blog/posts">All</a>
             <a class="navbar-item" href="/blog/about">About</a>
         </span>
@@ -65,7 +64,25 @@ Vancouver, West End</p>
 </div>
 </div>
 
-<marquee style="color: gray;">2023 // Made with Hugo</marquee>
+<marquee behaviour="scroll" class="footer-marquee" style="color: gray;"></marquee>
+
+<script>
+    const marquee = document.querySelector('.footer-marquee');
+
+    async function fetchJoke() {
+        const response = await fetch('https://icanhazdadjoke.com/', {
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        const data = await response.json();
+        const joke = data.joke;
+
+        marquee.innerText = "2023 // Made with Hugo // " + joke;
+    }
+
+    fetchJoke();
+</script>
     </div>
 </body>
 
