@@ -4,16 +4,16 @@ date: 2023-09-11
 draft: false
 ---
 
-{{< picture-list "images/group-3/*">}}
+{{< picture-list "images/0*">}}
 
-{{< picture-grid-3 "images/group-4/*">}}
+{{< picture-grid-2 "images/1*">}}
 
-{{< picture-list "images/group-8/*">}}
+{{< picture-list "images/2*">}}
 
-{{< picture-grid-2 "images/group-5/*">}}
+{{< picture-grid-2 "images/3*">}}
 
-{{< picture-grid-2 "images/group-6/*">}}
+{{< picture-list "images/4*">}}
 
-{{< picture-grid-2-1 "images/group-7/*">}}
+{{< picture-grid-2 "images/5*">}}
 
-{{< picture-list "images/group-9/*">}}
+{{< picture-list "images/6*">}}

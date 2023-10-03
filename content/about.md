@@ -5,6 +5,6 @@ draft: false
 layout: staticpage
 ---
 
-William Sevigny  
-Software Developer  
-Vancouver, West End
+Hi 👋
+
+I'm William, a software developer currently enjoying life in Vancouver's West End.
