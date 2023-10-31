@@ -13,7 +13,3 @@ draft: false
 {{< picture-grid-2 "images/3*">}}
 
 {{< picture-list "images/4*">}}
-
-{{< picture-grid-2 "images/5*">}}
-
-{{< picture-list "images/6*">}}

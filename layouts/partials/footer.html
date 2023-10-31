@@ -1,8 +1,8 @@
 <div class="footer">
-    {{ partial "navbar" }}
+    <marquee behaviour="scroll" class="footer-marquee">2023 // Made with Hugo</marquee>
 </div>
 
-<marquee behaviour="scroll" class="footer-marquee" style="color: gray;"></marquee>
+
 
 <script>
     const marquee = document.querySelector('.footer-marquee');
@@ -19,5 +19,5 @@
         marquee.innerText = "2023 // Made with Hugo // " + joke;
     }
 
-    fetchJoke();
+    // fetchJoke();
 </script>

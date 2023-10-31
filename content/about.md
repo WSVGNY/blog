@@ -5,6 +5,4 @@ draft: false
 layout: staticpage
 ---
 
-Hi 👋
-
-I'm William, a software developer currently enjoying life in Vancouver's West End.
+My name is William. I am a software developer, currently enjoying life in Vancouver's West End.

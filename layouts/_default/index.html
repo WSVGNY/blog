@@ -8,7 +8,7 @@
         <!-- Display latest images on the home page-->
         {{ range ( where .Site.RegularPages.ByDate.Reverse "Type" "posts" | first 1 ) }} <!-- Gets latest posts -->
 
-        <p style="color: gray;">Lastest // {{.Title}}</p>
+        <p style="color: gray;">Most Recent Post / {{.Title}}</p>
 
         {{.Content}}
         {{ end }}
