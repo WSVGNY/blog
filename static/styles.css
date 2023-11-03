@@ -97,6 +97,10 @@
     text-align: center;
  }
 
+ .bilderrahmen-wrapper {
+    background-color: rgba(255, 255, 255, 0.8);
+ }
+
  .bilderrahmen--image-inner-wrap{
     display: flex;
     align-items: center;
