@@ -4,8 +4,12 @@
 <body>
     <div class="container">
         {{ partial "header" . }}
-        <p style="color: gray;">{{ dateFormat "Jan 2, 2006" .Date }} / {{.Title}}</p>
-        {{.Content}}
+        <p style="color: gray;">{{ dateFormat "Jan 2, 2006" .Date }} - {{.Title}}</p>
+
+        <div style="margin-top: 3em; margin-bottom: 3em;">
+            {{.Content}}
+        </div>
+
         <!-- Display latest galleries -->
         {{ partial "latest-galleries" .}}
         {{ partial "footer" }}

@@ -1,9 +1,11 @@
 .header {
+    margin-top: 2rem;
     margin-bottom: 1rem;
 }
 
 .footer {
-    
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .navbar-item {
@@ -50,16 +52,29 @@
 
 .imagecontainer {
     width: fit-content;
+    height: fit-content;
     margin: auto;
     margin-bottom: 2rem;
 }
 
-.picture-height-limit {
-    max-height: 80rem;
-}
-
 .picture-width-limit {
     max-width: 80rem;
+}
+
+.picture-height-limit {
+    max-height: 30rem;
+}
+
+@media (min-width: 400px) {
+    .picture-height-limit {
+        max-height: 40rem;
+    }
+}
+
+@media (min-width: 550px) {
+    .picture-height-limit {
+        max-height: 60rem;
+    }
 }
 
 .thumbnail {
@@ -80,4 +95,9 @@
     vertical-align: middle;
     width: 100%;
     text-align: center;
+ }
+
+ .bilderrahmen--image-inner-wrap{
+    display: flex;
+    align-items: center;
  }
