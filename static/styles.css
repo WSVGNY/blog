@@ -98,11 +98,16 @@
  }
 
  .bilderrahmen-wrapper {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.8) !important;
  }
 
  .bilderrahmen--image-inner-wrap{
+    height: 90vh !important;
     display: flex;
     align-items: center;
     justify-content: center;
+ }
+
+ .bilderrahmen--top-close {
+    display: none;
  }
