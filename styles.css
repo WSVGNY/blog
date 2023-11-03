@@ -1,44 +1,22 @@
 .header {
+    margin-top: 2rem;
     margin-bottom: 1rem;
-    position: sticky;
-    top: 0rem;
 }
 
 .footer {
-    /* position: sticky;
-    bottom: 0; */
-    background-color: black;
-    margin: 1rem 0;
-}
-
-.navbar {
-    padding: 0 0.25em;
-    background-color: black;
-}
-
-.logo-title {
-    margin-right: 12;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.8rem
-}
-
-.logo-title:hover {
-    color: black;
-    background-color: white;
-
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .navbar-item {
     margin-right: 12;
-    color: white;
+    color: black;
     text-decoration: none;
     font-size: 1.8rem
 }
 
 .navbar-item:hover {
-    color: black;
+    color: grey;
     background-color: white;
 }
 
@@ -72,12 +50,31 @@
     font-size:16px;
 }
 
-.picture-height-limit {
-    max-height: 80rem;
+.imagecontainer {
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    margin-bottom: 2rem;
 }
 
 .picture-width-limit {
-    max-width: 100rem;
+    max-width: 80rem;
+}
+
+.picture-height-limit {
+    max-height: 30rem;
+}
+
+@media (min-width: 400px) {
+    .picture-height-limit {
+        max-height: 40rem;
+    }
+}
+
+@media (min-width: 550px) {
+    .picture-height-limit {
+        max-height: 60rem;
+    }
 }
 
 .thumbnail {
@@ -85,16 +82,6 @@
     width: 1em;
     height: 1em;
 }
-
-.imagecontainer {
-    width: fit-content;
-    margin: auto;
-    margin-bottom: 4rem;
-}
-
-/* .imagecontainer:last-of-type {
-    margin-bottom: 1rem;
-} */
 
 .scrollmenu {
     margin-top: 1em;
@@ -108,4 +95,9 @@
     vertical-align: middle;
     width: 100%;
     text-align: center;
+ }
+
+ .bilderrahmen--image-inner-wrap{
+    display: flex;
+    align-items: center;
  }

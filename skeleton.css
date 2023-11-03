@@ -31,51 +31,31 @@
 .container {
   position: relative;
   width: 100%;
-  /* max-width: 720; */
+  max-width: 960px;
   margin: 0 auto;
-  padding: 20px 20px;
+  padding: 0 20px;
   box-sizing: border-box; }
 .column,
 .columns {
   width: 100%;
   float: left;
-  box-sizing: border-box; }
-  .column,
-  .columns {
-    margin-left: 4%; }
-  .column:first-child,
-  .columns:first-child {
-    margin-left: 0; }
-
-  .four.columns                   { width: 30.6666666667%; }
-  .eight.columns                  { width: 65.3333333333%; }
+  box-sizing: border-box;
+  margin-left: 4%; }
+.column:first-child,
+.columns:first-child {
+  margin-left: 0; }
 
 /* For devices larger than 400px */
 @media (min-width: 400px) {
   .container {
     width: 85%;
-    padding: 20px 0; }
-  .column,
-  .columns {
-    margin-left: 4%; }
-  .column:first-child,
-  .columns:first-child {
-    margin-left: 0; }
-
-  .four.columns                   { width: 30.6666666667%; }
-  .eight.columns                  { width: 65.3333333333%; }
+    padding: 0; }
 }
 
 /* For devices larger than 550px */
 @media (min-width: 550px) {
   .container {
     width: 80%; }
-  .column,
-  .columns {
-    margin-left: 4%; }
-  .column:first-child,
-  .columns:first-child {
-    margin-left: 0; }
 
   .one.column,
   .one.columns                    { width: 4.66666666667%; }
@@ -392,8 +372,8 @@ form {
 /* Misc
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 hr {
-  margin-top: 3rem;
-  margin-bottom: 3.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   border-width: 0;
   border-top: 1px solid #E1E1E1; }
 
