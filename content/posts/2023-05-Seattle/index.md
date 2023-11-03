@@ -1,14 +1,14 @@
 ---
-title: "When Amazon HQ Calls : Seattle"
+title: "Cozy April in Seattle"
 date: 2023-09-19
-draft: true
+draft: false
 ---
-{{< picture-list "images/group-a/*">}}
+{{< picture-list "images/0*">}}
 
-{{< picture-grid-2 "images/group-monorail/*">}}
+{{< picture-grid-2 "images/1*">}}
 
-{{< picture-grid-2 "images/group-baseball/*">}}
+{{< picture-list "images/2*">}}
 
-{{< picture-list "images/group-food/*">}}
+{{< picture-grid-2 "images/3*">}}
 
-{{< picture-grid-2 "images/group-rain/*">}}
+{{< picture-list "images/4*">}}
