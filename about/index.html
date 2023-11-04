@@ -10,16 +10,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
-    
-
-    
     <link rel="stylesheet" href="/blog/normalize.css">
     <link rel="stylesheet" href="/blog/skeleton.css">
     <link rel="stylesheet" href="/blog/styles.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs@2.3.5/require.js"></script>
-
 </head>
 
 <script>
@@ -30,12 +26,10 @@
 
 <body>
     <div class="container">
+        
         <div class="header">
     <header>
-        
-        
-        
-<div class="navbar">
+        <div class="navbar">
     <nav>
         <span>
             <a class="navbar-item" href="/blog/">William Sévigny</a>
@@ -46,30 +40,17 @@
 </div>
     </header>
 </div>
-        <p style="color: gray;">About</p>
+
+        <p style="color: gray;">
+            About
+        </p>
+
         <p>My name is William. I am a software developer, currently enjoying life in Vancouver&rsquo;s West End.</p>
+
 
         <div class="footer">
     <marquee behaviour="scroll" class="footer-marquee">2023 // Made with Hugo</marquee>
 </div>
-
-<script>
-    const marquee = document.querySelector('.footer-marquee');
-
-    async function fetchJoke() {
-        const response = await fetch('https://icanhazdadjoke.com/', {
-            headers: {
-                'Accept': 'application/json'
-            }
-        })
-        const data = await response.json();
-        const joke = data.joke;
-
-        marquee.innerText = "2023 // Made with Hugo // " + joke;
-    }
-
-    
-</script>
     </div>
 </body>
 

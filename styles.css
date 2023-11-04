@@ -1,3 +1,4 @@
+/* site layout */
 .header {
     margin-top: 2rem;
     margin-bottom: 1rem;
@@ -20,7 +21,7 @@
     background-color: white;
 }
 
-/* list.html */
+/* post list */
 .post-list {
     list-style-type: none;
     padding: unset;
@@ -39,7 +40,12 @@
     text-decoration: none;
 }
 
-/* single.html */
+/* single post */
+.post-container {
+    margin-top: 3em;
+    margin-bottom: 3em;
+}
+
 .post-date {
     color:grey;
     font-size:16px;
@@ -50,13 +56,19 @@
     font-size:16px;
 }
 
-.imagecontainer {
+/* pictures layout */
+.picture-grid-container {
+    display: flex;
+    align-items: center;
+}
+
+.picture-container {
     width: fit-content;
-    height: fit-content;
     margin: auto;
     margin-bottom: 2rem;
 }
 
+/* pictures sizing */
 .picture-width-limit {
     max-width: 80rem;
 }
@@ -77,26 +89,7 @@
     }
 }
 
-.thumbnail {
-    display: block;
-    width: 1em;
-    height: 1em;
-}
-
-.scrollmenu {
-    margin-top: 1em;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-}
-
-.scrollcontent {
-    display:inline-block;
-    vertical-align: middle;
-    width: 100%;
-    text-align: center;
- }
-
+ /* pictures pop-up custom styling */
  .bilderrahmen-wrapper {
     background-color: rgba(255, 255, 255, 0.8) !important;
  }
@@ -110,4 +103,19 @@
 
  .bilderrahmen--top-close {
     display: none;
+ }
+
+/* picture carousel */
+.scrollmenu {
+    margin-top: 1em;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.scrollcontent {
+    display:inline-block;
+    vertical-align: middle;
+    width: 100%;
+    text-align: center;
  }
