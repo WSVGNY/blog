@@ -3,17 +3,17 @@
 
 <body>
     <div class="container">
-        {{ partial "header" . }} <!-- Adding "." gives the context to the partial -->
+        <!-- Adding "." gives the context to the partial -->
+        {{ partial "header" . }}
 
-        <!-- Display latest images on the home page-->
+        <!-- Display latest post on the home page-->
         {{ range ( where .Site.RegularPages.ByDate.Reverse "Type" "posts" | first 1 ) }} <!-- Gets latest posts -->
-
-        <p style="color: gray;">Most Recent Post - {{.Title}}</p>
-
-        <div style="margin-top: 3em; margin-bottom: 3em;">
+        <p style="color: gray;">
+            Most Recent Post - {{.Title}}
+        </p>
+        <div class="post-container">
             {{.Content}}
         </div>
-
         {{ end }}
 
         <!-- Display latest galleries -->

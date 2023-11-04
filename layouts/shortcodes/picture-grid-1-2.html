@@ -1,22 +1,21 @@
 <!-- @params path : image directory relative path -->
 <!-- http://jsfiddle.net/YbrX3/ -->
-<div class="picture-grid">
-    {{ $images := .Page.Resources.Match (.Get 0) }}
-    {{ $images := where $images ".MediaType.SubType" "in" (slice "jpeg" "png") }}
-    {{ $imageLeft := index $images 0}}
-    {{ $imageRight := index $images 1}}
 
-    <div class="row" style="display: flex; align-items: center;">
-        <div class="eight columns">
-            <div class="imagecontainer">
-                {{ partial "picture" $imageLeft}}
-            </div>
+{{ $images := .Page.Resources.Match (.Get 0) }}
+{{ $images := where $images ".MediaType.SubType" "in" (slice "jpeg" "png") }}
+{{ $imageLeft := index $images 0}}
+{{ $imageRight := index $images 1}}
+
+<div class="row picture-grid-container">
+    <div class=" eight columns">
+        <div class="picture-container">
+            {{ partial "picture" $imageLeft}}
         </div>
+    </div>
 
-        <div class="four columns">
-            <div class="imagecontainer">
-                {{ partial "picture" $imageRight}}
-            </div>
+    <div class="four columns">
+        <div class="picture-container">
+            {{ partial "picture" $imageRight}}
         </div>
     </div>
 </div>

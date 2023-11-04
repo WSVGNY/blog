@@ -3,9 +3,15 @@
 
 <body>
     <div class="container">
+        <!-- Adding "." gives the context to the partial -->
         {{ partial "header" . }}
-        <p style="color: gray;">{{.Title}}</p>
+
+        <p style="color: gray;">
+            {{.Title}}
+        </p>
+
         {{.Content}}
+
         {{ partial "footer" }}
     </div>
 </body>

@@ -3,15 +3,20 @@
 
 <body>
     <div class="container">
+        <!-- Adding "." gives the context to the partial -->
         {{ partial "header" . }}
-        <p style="color: gray;">{{ dateFormat "Jan 2, 2006" .Date }} - {{.Title}}</p>
 
-        <div style="margin-top: 3em; margin-bottom: 3em;">
+        <p style="color: gray;">
+            {{ dateFormat "Jan 2, 2006" .Date }} - {{.Title}}
+        </p>
+
+        <div class="post-container">
             {{.Content}}
         </div>
 
         <!-- Display latest galleries -->
         {{ partial "latest-galleries" .}}
+
         {{ partial "footer" }}
     </div>
 </body>

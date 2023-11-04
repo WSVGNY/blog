@@ -1,15 +1,15 @@
 <!-- @params path : image directory relative path -->
 <!-- http://jsfiddle.net/YbrX3/ -->
-<div class="picture-grid">
-    {{ $images := .Page.Resources.Match (.Get 0) }}
-    {{ $images := where $images ".MediaType.SubType" "in" (slice "jpeg" "png") }}
-    <div class="row" style="display: flex; align-items: center;">
-        {{ range $images | first 3 }}
-        <div class="one-third column">
-            <div class="imagecontainer">
-                {{ partial "picture" .}}
-            </div>
+
+{{ $images := .Page.Resources.Match (.Get 0) }}
+{{ $images := where $images ".MediaType.SubType" "in" (slice "jpeg" "png") }}
+
+<div class="row picture-grid-container">
+    {{ range $images | first 3 }}
+    <div class="one-third column">
+        <div class="picture-container">
+            {{ partial "picture" .}}
         </div>
-        {{ end }}
     </div>
+    {{ end }}
 </div>

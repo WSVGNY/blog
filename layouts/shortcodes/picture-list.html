@@ -2,13 +2,11 @@
 <!-- http://jsfiddle.net/YbrX3/ -->
 <!-- https://gohugo.io/content-management/image-processing/ -->
 
-<div class="picture-list">
-    {{ $images := .Page.Resources.Match (.Get 0) }}
-    {{ range $images }}
-    {{ if in (slice "jpeg" "png") .MediaType.SubType }}
-    <div class="imagecontainer">
-        {{ partial "picture" .}}
-    </div>
-    {{ end }}
-    {{ end }}
+{{ $images := .Page.Resources.Match (.Get 0) }}
+{{ range $images }}
+{{ if in (slice "jpeg" "png") .MediaType.SubType }}
+<div class="picture-container">
+    {{ partial "picture" .}}
 </div>
+{{ end }}
+{{ end }}

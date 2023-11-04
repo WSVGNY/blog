@@ -1,10 +1,19 @@
 <!-- Displays latest galleries -->
-<p style="color: gray; margin-bottom: 0;">More Posts</p>
+<p style="color: gray; margin-bottom: 0;">
+    More Posts
+</p>
 <ul class="post-list">
-    {{ range ( where .Site.RegularPages.ByDate.Reverse "Type" "posts" | first 3 ) }} <!-- Gets last 5 posts -->
+    <!-- Gets last 3 posts -->
+    {{ range ( where .Site.RegularPages.ByDate.Reverse "Type" "posts" | first 3 ) }}
     <li class="post-list-item">
-        <span class="date"><i>{{ dateFormat "Jan 2, 2006" .Date }}</i></span>
-        <a class="title" href="{{.Permalink}}">{{.Title}}</a>
+        <span class="date">
+            <i>
+                {{ dateFormat "Jan 2, 2006" .Date }}
+            </i>
+        </span>
+        <a class="title" href="{{.Permalink}}">
+            {{.Title}}
+        </a>
     </li>
     {{ end }}
 </ul>
