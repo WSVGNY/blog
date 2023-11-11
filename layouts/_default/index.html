@@ -8,9 +8,10 @@
 
         <!-- Display latest post on the home page-->
         {{ range ( where .Site.RegularPages.ByDate.Reverse "Type" "posts" | first 1 ) }} <!-- Gets latest posts -->
-        <p style="color: gray;">
-            Most Recent Post - {{.Title}}
-        </p>
+
+        <p style="color: gray; margin-bottom: 0;">Most Recent Post · {{ dateFormat "Jan 2" .Date }}</p>
+        <h4>{{.Title}}</h4>
+
         <div class="post-container">
             {{.Content}}
         </div>

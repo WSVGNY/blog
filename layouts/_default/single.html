@@ -6,9 +6,8 @@
         <!-- Adding "." gives the context to the partial -->
         {{ partial "header" . }}
 
-        <p style="color: gray;">
-            {{ dateFormat "Jan 2, 2006" .Date }} - {{.Title}}
-        </p>
+        <p style="color: gray; margin-bottom: 0;">{{ dateFormat "Jan 2, 2006" .Date }}</p>
+        <h4>{{.Title}}</h4>
 
         <div class="post-container">
             {{.Content}}

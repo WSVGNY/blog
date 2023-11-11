@@ -15,9 +15,7 @@
                 {{ range .Pages }}
                 <li class="post-list-item">
                     <span class="date">
-                        <i>
-                            {{ dateFormat "Jan 2, 2006" .Date }}
-                        </i>
+                        {{ dateFormat "Jan 2, 2006" .Date }}
                     </span>
                     <a class="title" href="{{.Permalink}}">
                         {{.Title}}
