@@ -1,13 +1,23 @@
 {{ with . }}
 
+<!-- https://exiftool.org/TagNames/EXIF.html -->
+
 <!-- Horizontal image -->
 {{ if lt .Height .Width }}
 <div class="picture-width-limit">
-    <!-- Image is rotated 90 -->
+    <!-- Image is rotated 270 CW -->
     {{ if eq .Exif.Tags.Orientation 8 }}
     {{ $image := .Resize "x2400 webp q80 r90" }}
     <a href="{{ $image.RelPermalink }}" target="_blank">
-        <img src="{{ $image.RelPermalink }}" class="u-max-full-width"
+        <img src="{{ $image.RelPermalink }}" class="picture-height-limit u-max-full-width"
+            data-bilderrahmen="gallery-{{$image.RelPermalink}}">
+    </a>
+
+    <!-- Image is rotated 90 CW -->
+    {{ else if eq .Exif.Tags.Orientation 6 }}
+    {{ $image := .Resize "x2400 webp q80 r270" }}
+    <a href="{{ $image.RelPermalink }}" target="_blank">
+        <img src="{{ $image.RelPermalink }}" class="picture-height-limit u-max-full-width"
             data-bilderrahmen="gallery-{{$image.RelPermalink}}">
     </a>
 
