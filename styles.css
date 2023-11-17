@@ -22,7 +22,7 @@
 
 .navbar-item:hover {
     color: grey;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 /* post list */
@@ -46,8 +46,7 @@
 
 /* single post */
 .post-container {
-    margin-top: 3em;
-    margin-bottom: 3em;
+    
 }
 
 .post-date {
