@@ -1,5 +1,5 @@
 <html>
-{{ partial "head" }}
+{{ partial "head" .}}
 
 <body>
     <div class="container">
@@ -9,7 +9,7 @@
         <div>
             <!-- Display all posts -->
             <p style="color: gray;">
-                All Posts
+                All Galleries
             </p>
             <ul class="post-list">
                 {{ range .Pages }}

@@ -73,7 +73,19 @@
 
 /* pictures sizing */
 .picture-width-limit {
-    max-width: 80rem;
+    max-width: 30rem;
+}
+
+@media (min-width: 400px) {
+    .picture-width-limit {
+        max-width: 40rem;
+    }
+}
+
+@media (min-width: 550px) {
+    .picture-width-limit {
+        max-width: 60rem;
+    }
 }
 
 .picture-height-limit {

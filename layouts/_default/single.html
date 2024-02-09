@@ -1,13 +1,14 @@
 <html>
-{{ partial "head" }}
+{{ partial "head" .}}
 
 <body>
     <div class="container">
         <!-- Adding "." gives the context to the partial -->
         {{ partial "header" . }}
 
-        <p style="color: gray; margin-bottom: 0;">{{ dateFormat "Jan 2, 2006" .Date }}</p>
-        <h4>{{.Title}}</h4>
+        <div style="text-align: center;">
+            <p style="font-style: italic;">{{.Title}}, {{ dateFormat "January 2" .Date }}</p>
+        </div>
 
         <div class="post-container">
             {{.Content}}

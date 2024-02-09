@@ -1,7 +1,8 @@
 <!-- Displays latest galleries -->
-<p style="color: gray; margin-bottom: 0;">
-    More Posts
-</p>
+<hr style="width:18rem;">
+
+<p style="font-style: italic;">More Galleries</p>
+
 <ul class="post-list">
     <!-- Gets last 3 posts -->
     {{ range ( where .Site.RegularPages.ByDate.Reverse "Type" "posts" | first 3 ) }}
@@ -17,3 +18,7 @@
     </li>
     {{ end }}
 </ul>
+
+<a href="/blog/posts" style="text-decoration: none;">
+    <p style="font-style: italic; ">See all galleries<p>
+</a>
