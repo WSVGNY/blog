@@ -1,13 +1,13 @@
 <html>
+<!-- Adding "." gives the context to the partial -->
 {{ partial "head" .}}
 
 <body>
     <div class="container">
-        <!-- Adding "." gives the context to the partial -->
         {{ partial "header" . }}
 
-        <!-- Display latest post on the home page-->
-        {{ range ( where .Site.RegularPages.ByDate.Reverse "Type" "posts" | first 1 ) }} <!-- Gets latest posts -->
+        <!-- Displays the latest post on the home page-->
+        {{ range ( where .Site.RegularPages.ByDate.Reverse "Type" "posts" | first 1 ) }}
 
         <div style="text-align: center;">
             <p style="font-style: italic;">{{.Title}}, {{ dateFormat "January 2" .Date }}</p>
@@ -18,7 +18,6 @@
         </div>
         {{ end }}
 
-        <!-- Display latest galleries -->
         {{ partial "latest-galleries" .}}
 
         {{ partial "footer" }}
