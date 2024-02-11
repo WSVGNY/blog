@@ -1,0 +1,49 @@
+.bilderrahmen-wrapper {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+ }
+
+ .bilderrahmen--image {
+    top: 0rem !important;
+    left: 0rem !important;
+    width: 100vw !important;
+    height: 100vh !important;
+ }
+
+ .bilderrahmen--image-inner-wrap{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+
+ .bilderrahmen--image-img {
+    max-height: 98% !important;
+    max-width: 98% !important;
+ }
+
+.bilderrahmen--top {
+    display: none !important;
+}
+
+.bilderrahmen--top-title {
+    display: none !important;
+}
+
+.bilderrahmen--top-close {
+    display: none !important;
+}
+
+.bilderrahmen--left {
+    display: none !important;
+}
+
+.bilderrahmen--left--has-previous {
+    display: none !important;
+}
+
+.bilderrahmen--right {
+    display: none !important;
+}
+
+.bilderrahmen--right--has-next {
+    display: none !important;
+}
