@@ -1,5 +1,5 @@
 ---
-title: "Cozy April in Seattle"
+title: "I was a few days in Seattle for work"
 date: 2023-09-19
 draft: false
 ---
