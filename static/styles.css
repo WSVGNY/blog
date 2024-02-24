@@ -76,31 +76,25 @@
     max-width: 30rem;
 }
 
-@media (min-width: 400px) {
-    .picture-width-limit {
-        max-width: 40rem;
-    }
-}
-
-@media (min-width: 550px) {
-    .picture-width-limit {
-        max-width: 60rem;
-    }
-}
-
 .picture-height-limit {
     max-height: 30rem;
 }
 
 @media (min-width: 400px) {
+    .picture-width-limit {
+        max-width: 40rem;
+    }
     .picture-height-limit {
         max-height: 40rem;
     }
 }
 
 @media (min-width: 550px) {
+    .picture-width-limit {
+        max-width: 50rem;
+    }
     .picture-height-limit {
-        max-height: 60rem;
+        max-height: 50rem;
     }
 }
 
