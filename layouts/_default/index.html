@@ -10,7 +10,7 @@
         {{ range ( where .Site.RegularPages.ByDate.Reverse "Type" "posts" | first 1 ) }}
 
         <div style="text-align: center;">
-            <p style="font-style: italic;">{{.Title}}, {{ dateFormat "January 2" .Date }}</p>
+            <p style="font-style: italic;">{{.Title}}, {{ dateFormat "Jan 2006" .Date }}</p>
         </div>
 
         <div class="post-container">

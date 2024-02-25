@@ -1,23 +1,19 @@
 <!-- Displays latest galleries -->
 <!-- <hr style="width:18rem;"> -->
 
-<h3>
-    More Galleries
-    <span>
-        <a href="/blog/posts" style="text-decoration: none;">
-            (all)
-        </a>
-    </span>
-</h3>
+
+<h1>
+    <a href="/blog/posts" style="text-decoration: none;">
+        More
+    </a>
+</h1>
 
 <ul class="post-list">
     <!-- Gets last 3 posts -->
     {{ range ( where .Site.RegularPages.ByDate.Reverse "Type" "posts" | first 3 ) }}
     <li class="post-list-item">
         <span class="date">
-            <i>
-                {{ dateFormat "Jan 2, 2006" .Date }}
-            </i>
+            {{ dateFormat "Jan 2006" .Date }}
         </span>
         <a class="title" href="{{.Permalink}}">
             {{.Title}}

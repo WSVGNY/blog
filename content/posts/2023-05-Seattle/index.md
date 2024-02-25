@@ -1,6 +1,6 @@
 ---
 title: "A few days in Seattle for work"
-date: 2023-09-19
+date: 2023-10-01
 draft: false
 ---
 
