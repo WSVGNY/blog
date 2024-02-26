@@ -8,11 +8,9 @@
 
         <!-- Displays the latest post on the home page-->
         {{ range ( where .Site.RegularPages.ByDate.Reverse "Type" "posts" | first 1 ) }}
-
         <div class="post-container">
             {{.Content}}
         </div>
-
         {{ end }}
 
         {{ partial "latest-galleries" .}}
