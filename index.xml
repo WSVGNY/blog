@@ -6,14 +6,23 @@
     <description>Recent content on William Sevigny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://wsvgny.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://wsvgny.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>In Paris</title>
+      <link>https://wsvgny.github.io/blog/posts/2024-02-paris/</link>
+      <pubDate>Thu, 01 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://wsvgny.github.io/blog/posts/2024-02-paris/</guid>
+      <description> &#34;In Paris&#34;, pictures from May 2021. </description>
+    </item>
+    
     <item>
       <title>Seattle for Work</title>
       <link>https://wsvgny.github.io/blog/posts/2023-10-seattle/</link>
       <pubDate>Sun, 01 Oct 2023 00:00:00 +0000</pubDate>
       
       <guid>https://wsvgny.github.io/blog/posts/2023-10-seattle/</guid>
-      <description>&amp;ldquo;Seattle for Work&amp;rdquo;, pictures from April 2023.</description>
+      <description> &#34;Seattle for Work&#34;, pictures from April 2023. </description>
     </item>
     
     <item>
@@ -28,10 +37,10 @@
     <item>
       <title>Winter in Vancouver</title>
       <link>https://wsvgny.github.io/blog/posts/2023-09-vancouver/</link>
-      <pubDate>Mon, 11 Sep 2023 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 01 Sep 2023 00:00:00 +0000</pubDate>
       
       <guid>https://wsvgny.github.io/blog/posts/2023-09-vancouver/</guid>
-      <description>&amp;ldquo;Winter in Vancouver&amp;rdquo;, pictures from January 2023.</description>
+      <description> &#34;Winter in Vancouver&#34;, pictures from January 2023. </description>
     </item>
     
   </channel>
