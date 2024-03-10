@@ -2,7 +2,7 @@
 
 <hr style="margin-bottom: 2rem;">
 
-<ul class=" post-list">
+<ul class="post-list">
     <!-- Gets last 3 posts -->
     {{ range ( where .Site.RegularPages.ByDate.Reverse "Type" "posts" | first 3 ) }}
     <li class="post-list-item">
