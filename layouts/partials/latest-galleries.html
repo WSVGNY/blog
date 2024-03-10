@@ -1,16 +1,8 @@
 <!-- Displays latest galleries -->
-<div style="text-align: center; ">
-    <h4 style="text-decoration: underline">
-        Latest Galleries
-        <span>
-            <a href="/blog/posts" style="text-decoration: none;">
-                (or see all)
-            </a>
-        </span>
-    </h4>
-</div>
 
-<ul class="post-list">
+<hr style="margin-bottom: 2rem;">
+
+<ul class=" post-list">
     <!-- Gets last 3 posts -->
     {{ range ( where .Site.RegularPages.ByDate.Reverse "Type" "posts" | first 3 ) }}
     <li class="post-list-item">
@@ -23,3 +15,9 @@
     </li>
     {{ end }}
 </ul>
+
+<p style="text-align: center;">
+    <a href="/blog/posts">
+        Browse all galleries
+    </a>
+</p>
