@@ -8,25 +8,6 @@
     margin-bottom: 2rem;
 }
 
-/* post list */
-.post-list {
-    list-style-type: none;
-    padding: unset;
-}
-
-.post-list-item {
-    display: flex;
-    margin-bottom: 0;
-}
-
-.post-list-item .date {
-    flex: 0 0 100px;
-}
-
-.post-list-item .title {
-    text-decoration: none;
-}
-
 /* single post */
 .post-container {
     margin-bottom: 2rem;

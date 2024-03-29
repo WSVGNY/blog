@@ -30,14 +30,33 @@
     });
 </script>
 
+<style>
+     
+    .post-list {
+        list-style-type: none;
+        padding: unset;
+    }
+
+    .post-list-item {
+        display: flex;
+        margin-bottom: 0;
+    }
+
+    .post-list-item .date {
+        flex: 0 0 100px;
+    }
+
+    .post-list-item .title {
+        text-decoration: none;
+    }
+</style>
+
 <body>
     <div class="container">
         <div style="text-align: center; margin-top: 2rem; margin-bottom: 2rem">
-    <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-        <a href="/blog/">
-            <img src="/blog/pixel-art.png" style="height: 4rem; border-style: none; box-shadow: none;" />
-        </a>
-    </div>
+    <a href="/blog/">
+        <img src="/blog/pixel-art.png" style="height: 4rem; border-style: none; box-shadow: none;" />
+    </a>
     <hr>
 </div>
 
