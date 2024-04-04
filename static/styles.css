@@ -50,7 +50,8 @@ img {
     border: 0.75rem;
     border-style: solid;
     border-color: #fff;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 4px 12px;
+    /* #78 from https://getcssscan.com/css-box-shadow-examples */
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
 }
 
 .picture-width-limit {
