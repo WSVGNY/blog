@@ -12,11 +12,9 @@
         </div>
         {{ end }}
 
-        <p class="bottom-margin" style="text-align: center;">
-            <a href="/blog/posts" style="text-decoration: none; font-weight: bold;">
-                Click me to browse all pictures!
-            </a>
-        </p>
+        <form action="/blog/posts" style="text-align: center; margin-bottom: 2rem;">
+            <input class="button-primary" type="submit" value="Browse all pictures" style="margin-bottom: 0;" />
+        </form>
 
         {{ partial "footer" }}
     </div>
