@@ -9,7 +9,29 @@
             {{.Content}}
         </div>
 
-        <p class="bottom-margin" style="text-align: center;">
+
+        <p style="text-align: center;">
+            {{ if .Next }}
+            <a href="{{ .Next.Permalink }}" style="text-decoration: none;">
+                Previous: {{ .Next.Title }}
+            </a>
+            {{ else }}
+            Previous: --
+            {{ end }}
+
+            |
+
+            {{ if .Prev }}
+            <a href="{{ .Prev.Permalink }}" style="text-decoration: none;">
+                Next: {{ .Prev.Title }}
+            </a>
+            {{ else }}
+            Next: --
+            {{ end }}
+        </p>
+
+
+        <p style="text-align: center;">
             <a href="/blog/posts" style="text-decoration: none;">
                 See all pictures
             </a>
