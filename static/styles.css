@@ -48,12 +48,6 @@
 
 /* pictures sizing */
 img {
-    border: 0.75rem;
-    border-style: solid;
-    border-color: #fff;
-    /* #78 from https://getcssscan.com/css-box-shadow-examples */
-    /* box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px; */
-
     /* #47 from https://getcssscan.com/css-box-shadow-examples */
     box-shadow: rgba(0, 0, 0, 0.05) 0px 3px 5px;
 }
