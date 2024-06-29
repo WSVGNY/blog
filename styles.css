@@ -70,10 +70,10 @@ img {
 
 @media (min-width: 550px) {
     .picture-width-limit {
-        max-width: 50rem;
+        max-width: 64rem;
     }
     .picture-height-limit {
-        max-height: 50rem;
+        max-height: 64rem;
     }
 }
 
