@@ -13,19 +13,17 @@
         {{ end }}
 
         <!-- Displays the link to the second latest post on the home page -->
-        <p style="text-align: center;">
-            {{ $secondpost := index (where .Site.RegularPages.ByDate.Reverse "Type" "posts") 1 }}
-            <a href="{{ $secondpost.Permalink }}" style="text-decoration: none;">
-                Next: {{ $secondpost.Title }}
-            </a>
-        </p>
-
-
-        <p style="text-align: center;">
-            <a href="/blog/posts" style="text-decoration: none;">
-                See all pictures
-            </a>
-        </p>
+        {{ $secondpost := index (where .Site.RegularPages.ByDate.Reverse "Type" "posts") 1 }}
+        <ul class="post-list">
+            <li class="post-list-item">
+                <span class="date">
+                    Next album
+                </span>
+                <a class="title" href="{{ $secondpost.Permalink }}">
+                    {{ $secondpost.Title }}
+                </a>
+            </li>
+        </ul>
 
         {{ partial "footer" }}
     </div>

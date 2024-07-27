@@ -6,6 +6,7 @@ draft: false
 
 {{< picture-list "images/*">}}
 
-{{< center >}} 
-"Winter in Vancouver", pictures from January 2023.
-{{< /center >}}  
+
+## **Winter in Vancouver**
+## Pictures from January 2023.
+
