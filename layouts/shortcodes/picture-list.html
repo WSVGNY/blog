@@ -3,9 +3,17 @@
 <!-- https://gohugo.io/content-management/image-processing/ -->
 
 {{ $images := .Page.Resources.Match (.Get 0) }}
-{{ range $images }}
-{{ if in (slice "jpeg" "png") .MediaType.SubType }}
-<div class="picture-container">
+{{ $images := where $images ".MediaType.SubType" "in" (slice "jpeg" "png") }}
+{{ $length := len $images}}
+
+{{ range $index, $image := $images }}
+{{ if eq (math.Add $index 1) $length }}
+<!-- This is the last picture in the list, so we're not adding a bottom margin. -->
+<div class="picture-container-no-bottom-margin">
+    {{ partial "picture" .}}
+</div>
+{{ else }}
+<div class="picture-container-with-bottom-margin">
     {{ partial "picture" .}}
 </div>
 {{ end }}

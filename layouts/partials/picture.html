@@ -1,7 +1,5 @@
 {{ with . }}
-
 <!-- https://exiftool.org/TagNames/EXIF.html -->
-
 <!-- Horizontal image -->
 {{ if lt .Height .Width }}
 <div class="picture-width-limit">
@@ -39,5 +37,4 @@
         data-bilderrahmen="gallery-{{$image.RelPermalink}}">
 </a>
 {{ end }}
-
 {{ end }}
