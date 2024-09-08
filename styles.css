@@ -41,14 +41,14 @@
 .picture-container {
     width: fit-content;
     margin: auto;
-    margin-bottom: 5rem;
+    margin-bottom: 12rem;
 }
 
 @media (min-width: 550px) {
     .picture-container {
         width: fit-content;
         margin: auto;
-        margin-bottom: 5rem;
+        margin-bottom: 12rem;
     }
 }
 
