@@ -13,9 +13,9 @@
         {{ end }}
 
         <!-- Displays the link to the second latest post on the home page -->
-        {{ $secondpost := index (where .Site.RegularPages.ByDate.Reverse "Type" "posts") 1 }}
-        <ul class="post-list">
-            <li class="post-list-item">
+        <!-- {{ $secondpost := index (where .Site.RegularPages.ByDate.Reverse "Type" "posts") 1 }}
+        <ul class="post-list" style="margin-bottom: 0">
+            <li class=" post-list-item">
                 <span class="date">
                     Next album
                 </span>
@@ -23,7 +23,7 @@
                     {{ $secondpost.Title }}
                 </a>
             </li>
-        </ul>
+        </ul> -->
 
         {{ partial "footer" }}
     </div>

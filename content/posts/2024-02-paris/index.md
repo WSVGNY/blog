@@ -5,6 +5,3 @@ draft: false
 ---
 
 {{< picture-list "images/*">}}
-
-## **In Paris**
-## Pictures from May 2021.
