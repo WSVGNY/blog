@@ -33,7 +33,7 @@
   width: 100%;
   max-width: 640px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 14px;
   box-sizing: border-box;
 }
 
@@ -57,10 +57,6 @@
 
 /* For devices larger than 550px */
 @media (min-width: 550px) {
-  .container {
-    padding: 0;
-  }
-
   .one.column,
   .one.columns                    { width: 4.66666666667%; }
   .two.columns                    { width: 13.3333333333%; }
@@ -131,7 +127,7 @@ are based on 10px sizing. So basically 1.5rem = 15px :) */
 html {
   font-size: 62.5%; }
 body {
-  font-size: 1.6em; /* currently ems cause chrome bug misinterpreting rems on body element */
+  font-size: 1em; /* currently ems cause chrome bug misinterpreting rems on body element */
   line-height: 1.5;
   font-weight: 400;
   color: #222; }
