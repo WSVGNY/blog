@@ -4,7 +4,9 @@
 
 {{ $images := .Page.Resources.Match (.Get 0) }}
 {{ $images := where $images ".MediaType.SubType" "in" (slice "jpeg" "png") }}
+{{ $images := sort $images "Name" "desc"}}
 {{ $length := len $images}}
+
 
 {{ range $index, $image := $images }}
 {{ if eq (math.Add $index 1) $length }}
