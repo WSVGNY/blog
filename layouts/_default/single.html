@@ -10,33 +10,27 @@
         </div>
 
         <!-- Displays the link to the previous and next (if any) post -->
-        <!-- <ul class="post-list">
-            <li class="post-list-item">
-                <span class="date">
-                    Previous album
-                </span>
+        <div style="margin-bottom: 9rem; text-align: center;">
+            <div style="width: 40%; display: inline-block; text-align: right;">
                 {{ if .Next }}
                 <a class="title" href="{{ .Next.Permalink }}">
-                    {{ .Next.Title }}
+                    ← previous
                 </a>
                 {{ else }}
-                n/a
+                ← previous
                 {{ end }}
-            </li>
-
-            <li class="post-list-item">
-                <span class="date">
-                    Next album
-                </span>
+            </div>
+            <div style="width: 10%; display: inline-block;"></div>
+            <div style=" width: 40%; display: inline-block; text-align: left;">
                 {{ if .Prev }}
                 <a class="title" href="{{ .Prev.Permalink }}">
-                    {{ .Prev.Title }}
+                    next →
                 </a>
                 {{ else }}
-                n/a
+                next →
                 {{ end }}
-            </li>
-        </ul> -->
+            </div>
+        </div>
 
         {{ partial "footer" }}
     </div>

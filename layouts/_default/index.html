@@ -13,17 +13,23 @@
         {{ end }}
 
         <!-- Displays the link to the second latest post on the home page -->
-        <!-- {{ $secondpost := index (where .Site.RegularPages.ByDate.Reverse "Type" "posts") 1 }}
-        <ul class="post-list" style="margin-bottom: 0">
-            <li class=" post-list-item">
-                <span class="date">
-                    Next album
-                </span>
-                <a class="title" href="{{ $secondpost.Permalink }}">
-                    {{ $secondpost.Title }}
+        {{ $secondpost := index (where .Site.RegularPages.ByDate.Reverse "Type" "posts") 1 }}
+        <div style="margin-bottom: 9rem; text-align: center;">
+            <div style="width: 40%; display: inline-block; text-align: right;">
+                ← previous
+            </div>
+            <div style="width: 10%; display: inline-block;"></div>
+            <div style=" width: 40%; display: inline-block; text-align: left;">
+                {{ if $secondpost }}
+                <a href="{{ $secondpost.Permalink }}">
+                    next →
                 </a>
-            </li>
-        </ul> -->
+                {{ else }}
+                next →
+                {{ end }}
+            </div>
+        </div>
+
         {{ partial "footer" }}
     </div>
 </body>
