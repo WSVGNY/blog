@@ -87,22 +87,14 @@ img {
     visibility:visible;
 }
 
-/* .picture-width-limit {
-    max-width: 34rem;
-} */
-
 .picture-height-limit {
-    /* max-height: 34rem; */
-    max-height: 40rem;
+    max-height: 48rem;
 }
 
 @media (min-width: 550px) {
-    /* .picture-width-limit {
-        max-width: 64rem;
-    } */
     .picture-height-limit {
-        /* max-height: 64rem; */
-        max-height: 76rem;
+    
+        max-height: 78rem;
     }
 }
 
