@@ -1,6 +1,6 @@
 ---
-title: "2024-a"
-date: 2024-01-30
+title: "2024-b"
+date: 2024-01-29
 draft: false
 ---
 
