@@ -21,8 +21,11 @@ rm -rf public/*
 echo "Generating site"
 hugo
 
+echo "Adding CNAME into public"
+cp CNAME public
+
 echo "Updating gh-pages branch"
-git add CNAME && cd public && git add --all && git commit -m "Publishing to gh-pages (publish.sh)"
+cd public && git add --all && git commit -m "Publishing to gh-pages (publish.sh)"
 
 echo "Pushing to github"
 git push --all
