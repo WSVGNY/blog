@@ -14,7 +14,7 @@
 
         <!-- Displays the link to the second latest post on the home page -->
         {{ $secondpost := index (where .Site.RegularPages.ByDate.Reverse "Type" "posts") 1 }}
-        <div style="margin-bottom: 9rem; text-align: center;">
+        <div style="text-align: center;">
             <div style="width: 40%; display: inline-block; text-align: right;">
                 ← previous
             </div>
