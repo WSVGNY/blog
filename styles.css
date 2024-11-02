@@ -1,19 +1,43 @@
 /* Top logo */
-.header-logo-spacer {
-    display: none;
+.header-left {
+    position: fixed;
+    left: 3rem;
+    top: 3rem;
+}
+
+.footer-left {
+    position: fixed;
+    left: 5rem;
+    bottom: 3rem;
+}
+
+.footer-right {
+    position: fixed;
+    right: 5rem;
+    bottom: 3rem;
 }
 
 @media (min-width: 550px) {
-    .header-logo-container {
+    .header-left {
         position: fixed;
         left: 5rem;
         top: 3rem;
     }
 
-    .header-logo-spacer {
-        display: inline;
+    .footer-left {
+        position: fixed;
+        left: 3rem;
+        bottom: 3rem;
+    }
+    
+    .footer-right {
+        position: fixed;
+        right: 3rem;
+        bottom: 3rem;
     }
 }
+
+
 
 .bottom-margin {
     margin-bottom: 2rem;
@@ -58,14 +82,14 @@
 .picture-container-with-bottom-margin {
     width: fit-content;
     margin: auto;
-    margin-bottom: 8rem;
+    margin-bottom: 6rem;
 }
 
 @media (min-width: 550px) {
     .picture-container-with-bottom-margin {
         width: fit-content;
         margin: auto;
-        margin-bottom: 12rem;
+        margin-bottom: 10rem;
     }
 }
 
