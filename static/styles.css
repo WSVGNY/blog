@@ -7,13 +7,13 @@
 
 .footer-left {
     position: fixed;
-    left: 5rem;
+    left: 3rem;
     bottom: 3rem;
 }
 
 .footer-right {
     position: fixed;
-    right: 5rem;
+    right: 3rem;
     bottom: 3rem;
 }
 
@@ -26,13 +26,13 @@
 
     .footer-left {
         position: fixed;
-        left: 3rem;
+        left: 5rem;
         bottom: 3rem;
     }
     
     .footer-right {
         position: fixed;
-        right: 3rem;
+        right: 5rem;
         bottom: 3rem;
     }
 }
