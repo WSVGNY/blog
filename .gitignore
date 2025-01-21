@@ -14,3 +14,4 @@ hugo.linux
 
 # Post images
 /content/posts/**/images/
+/_local/
