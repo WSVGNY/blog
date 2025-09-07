@@ -37,8 +37,6 @@
     }
 }
 
-
-
 .bottom-margin {
     margin-bottom: 2rem;
 }
@@ -82,14 +80,14 @@
 .picture-container-with-bottom-margin {
     width: fit-content;
     margin: auto;
-    margin-bottom: 6rem;
+    margin-bottom: 5rem;
 }
 
 @media (min-width: 550px) {
     .picture-container-with-bottom-margin {
         width: fit-content;
         margin: auto;
-        margin-bottom: 10rem;
+        margin-bottom: 9rem;
     }
 }
 
