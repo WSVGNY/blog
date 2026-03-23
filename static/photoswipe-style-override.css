@@ -1,0 +1,16 @@
+/* White background instead of black */
+.pswp__bg {
+    background: #fff !important;
+}
+
+/* Pointer cursor since clicking closes the lightbox */
+.pswp__img {
+    cursor: pointer !important;
+}
+
+/* Hide top bar (close, zoom, counter) and navigation arrows */
+.pswp__top-bar,
+.pswp__button--arrow--prev,
+.pswp__button--arrow--next {
+    display: none !important;
+}

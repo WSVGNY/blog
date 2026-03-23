@@ -11,11 +11,11 @@
 {{ range $index, $image := $images }}
 {{ if eq (math.Add $index 1) $length }}
 <!-- This is the last picture in the list, so we're not adding a bottom margin. -->
-<div class="picture-container-no-bottom-margin">
+<div class="picture-container-no-bottom-margin pswp-gallery">
     {{ partial "picture" .}}
 </div>
 {{ else }}
-<div class="picture-container-with-bottom-margin">
+<div class="picture-container-with-bottom-margin pswp-gallery">
     {{ partial "picture" .}}
 </div>
 {{ end }}

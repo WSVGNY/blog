@@ -28,3 +28,7 @@ Commit all changes first, then run:
 ```
 
 This builds the site with Hugo and pushes the result to the `gh-pages` branch on GitHub.
+
+## Previously used libraries
+
+- https://github.com/codeclou/bilderrahmen, replaced by PhotoSwipe

@@ -19,14 +19,12 @@
     <link rel="stylesheet" href="/blog/normalize.css">
     <link rel="stylesheet" href="/blog/skeleton.css">
     <link rel="stylesheet" href="/blog/styles.css">
-    <link rel="stylesheet" href="/blog/bilderrahmen-style-override.css">
-
     <link rel="icon" type="image/x-icon" href="/blog/website_v2_no_back.ico">
 
     <!-- Libraries
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link href="https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/gh/requirejs/requirejs@2.3.5/require.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe.css" />
+    <link rel="stylesheet" href="/blog/photoswipe-style-override.css" />
 
     <!-- Fonts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -34,8 +32,15 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 </head>
 
-<script>
-    require(['https://cdn.jsdelivr.net/npm/bilderrahmen@1.0.0/bilderrahmen.umd.es5.js'], function (module) {
-        new module.Bilderrahmen({ closeOnOutsideClick: true });
+<script type="module">
+    import PhotoSwipeLightbox from 'https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe-lightbox.esm.min.js';
+    const lightbox = new PhotoSwipeLightbox({
+        gallery: '.pswp-gallery',
+        children: 'a',
+        imageClickAction: 'close',
+        tapAction: 'close',
+        padding: { top: 40, bottom: 40, left: 20, right: 20 },
+        pswpModule: () => import('https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe.esm.min.js')
     });
+    lightbox.init();
 </script>
