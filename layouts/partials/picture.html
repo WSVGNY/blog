@@ -8,7 +8,7 @@
     {{ $display := .Resize "x1400 webp q80 r90" }}
     {{ $lightbox := .Resize "x2400 webp q80 r90" }}
     <a href="{{ $lightbox.RelPermalink }}" data-pswp-width="{{ $lightbox.Width }}" data-pswp-height="{{ $lightbox.Height }}" style="line-height: 0;">
-        <img src="{{ $display.RelPermalink }}" class="picture-height-limit u-max-full-width">
+        <img src="{{ $display.RelPermalink }}" class="picture-height-limit u-max-full-width" loading="lazy">
     </a>
     <p style="color: gray; margin-bottom: 0rem; text-align: end; margin-top: 0.5rem;">{{ .Exif.Tags.ImageDescription }}
     </p>
@@ -18,7 +18,7 @@
     {{ $display := .Resize "x1400 webp q80 r270" }}
     {{ $lightbox := .Resize "x2400 webp q80 r270" }}
     <a href="{{ $lightbox.RelPermalink }}" data-pswp-width="{{ $lightbox.Width }}" data-pswp-height="{{ $lightbox.Height }}" style="line-height: 0;">
-        <img src="{{ $display.RelPermalink }}" class="picture-height-limit u-max-full-width">
+        <img src="{{ $display.RelPermalink }}" class="picture-height-limit u-max-full-width" loading="lazy">
     </a>
     <p style="color: gray; margin-bottom: 0rem; text-align: end; margin-top: 0.5rem;">{{ .Exif.Tags.ImageDescription }}
     </p>
@@ -28,7 +28,7 @@
     {{ $display := .Resize "1400x webp q80" }}
     {{ $lightbox := .Resize "2400x webp q80" }}
     <a href="{{ $lightbox.RelPermalink }}" data-pswp-width="{{ $lightbox.Width }}" data-pswp-height="{{ $lightbox.Height }}" style="line-height: 0;">
-        <img src="{{ $display.RelPermalink }}" class="u-max-full-width">
+        <img src="{{ $display.RelPermalink }}" class="u-max-full-width" loading="lazy">
     </a>
     <p style="color: gray; margin-bottom: 0rem; text-align: end; margin-top: 0.5rem;">{{ .Exif.Tags.ImageDescription }}
     </p>
@@ -40,7 +40,7 @@
 {{ $display := .Resize "x1400 webp q80" }}
 {{ $lightbox := .Resize "x2400 webp q80" }}
 <a href="{{ $lightbox.RelPermalink }}" data-pswp-width="{{ $lightbox.Width }}" data-pswp-height="{{ $lightbox.Height }}" style="line-height: 0;">
-    <img src="{{ $display.RelPermalink }}" class="picture-height-limit u-max-full-width">
+    <img src="{{ $display.RelPermalink }}" class="picture-height-limit u-max-full-width" loading="lazy">
 </a>
 <p style="color: gray; margin-bottom: 0rem; text-align: end; margin-top: 0.5rem;">{{ .Exif.Tags.ImageDescription }}</p>
 {{ end }}
