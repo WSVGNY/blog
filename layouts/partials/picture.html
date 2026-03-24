@@ -5,8 +5,9 @@
 <div class="picture-width-limit">
     <!-- Image is rotated 270 CW -->
     {{ if eq .Exif.Tags.Orientation 8 }}
-    {{ $image := .Resize "x1400 webp q80 r90" }}
-    <a href="{{ $image.RelPermalink }}" data-pswp-width="{{ $image.Width }}" data-pswp-height="{{ $image.Height }}" style="line-height: 0;">
+    {{ $image := .Resize "x2400 webp q80 r90" }}
+    <a href="{{ $image.RelPermalink }}" data-pswp-width="{{ $image.Width }}" data-pswp-height="{{ $image.Height }}"
+        style="line-height: 0;">
         <img src="{{ $image.RelPermalink }}" class="picture-height-limit u-max-full-width" loading="lazy">
     </a>
     <p style="color: gray; margin-bottom: 0rem; text-align: end; margin-top: 0.5rem;">{{ .Exif.Tags.ImageDescription }}
@@ -14,8 +15,9 @@
 
     <!-- Image is rotated 90 CW -->
     {{ else if eq .Exif.Tags.Orientation 6 }}
-    {{ $image := .Resize "x1400 webp q80 r270" }}
-    <a href="{{ $image.RelPermalink }}" data-pswp-width="{{ $image.Width }}" data-pswp-height="{{ $image.Height }}" style="line-height: 0;">
+    {{ $image := .Resize "x2400 webp q80 r270" }}
+    <a href="{{ $image.RelPermalink }}" data-pswp-width="{{ $image.Width }}" data-pswp-height="{{ $image.Height }}"
+        style="line-height: 0;">
         <img src="{{ $image.RelPermalink }}" class="picture-height-limit u-max-full-width" loading="lazy">
     </a>
     <p style="color: gray; margin-bottom: 0rem; text-align: end; margin-top: 0.5rem;">{{ .Exif.Tags.ImageDescription }}
@@ -23,8 +25,9 @@
 
     <!-- Image is the correct rotation -->
     {{ else }}
-    {{ $image := .Resize "1400x webp q80" }}
-    <a href="{{ $image.RelPermalink }}" data-pswp-width="{{ $image.Width }}" data-pswp-height="{{ $image.Height }}" style="line-height: 0;">
+    {{ $image := .Resize "2400x webp q80" }}
+    <a href="{{ $image.RelPermalink }}" data-pswp-width="{{ $image.Width }}" data-pswp-height="{{ $image.Height }}"
+        style="line-height: 0;">
         <img src="{{ $image.RelPermalink }}" class="u-max-full-width" loading="lazy">
     </a>
     <p style="color: gray; margin-bottom: 0rem; text-align: end; margin-top: 0.5rem;">{{ .Exif.Tags.ImageDescription }}
@@ -34,8 +37,9 @@
 
 <!-- Vertical image -->
 {{ else }}
-{{ $image := .Resize "x1400 webp q80" }}
-<a href="{{ $image.RelPermalink }}" data-pswp-width="{{ $image.Width }}" data-pswp-height="{{ $image.Height }}" style="line-height: 0;">
+{{ $image := .Resize "x2400 webp q80" }}
+<a href="{{ $image.RelPermalink }}" data-pswp-width="{{ $image.Width }}" data-pswp-height="{{ $image.Height }}"
+    style="line-height: 0;">
     <img src="{{ $image.RelPermalink }}" class="picture-height-limit u-max-full-width" loading="lazy">
 </a>
 <p style="color: gray; margin-bottom: 0rem; text-align: end; margin-top: 0.5rem;">{{ .Exif.Tags.ImageDescription }}</p>
