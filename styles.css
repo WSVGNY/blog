@@ -65,72 +65,42 @@
     margin-bottom: 6rem;
 }
 
-/* pictures layout */
-.picture-grid-container {
-    display: flex;
-    align-items: center;
-}
-
+/* --- pictures --- */
 .picture-container-no-bottom-margin {
     width: fit-content;
     margin: auto;
     margin-bottom: 0rem;
 }
 
+/* mobile */
 .picture-container-with-bottom-margin {
     width: fit-content;
     margin: auto;
-    margin-bottom: 5rem;
+    margin-bottom: 6rem;
 }
 
+/* desktop */
 @media (min-width: 550px) {
     .picture-container-with-bottom-margin {
         width: fit-content;
         margin: auto;
-        margin-bottom: 9rem;
+        margin-bottom: 16rem;
     }
 }
 
-/* pictures sizing */
 img {
     /* #47 from https://getcssscan.com/css-box-shadow-examples */
     box-shadow: rgba(0, 0, 0, 0.05) 0px 3px 5px;
 }
 
-.picture-text-wrapper .picture-text {
-    position: relative;
-    text-align: center;
-    bottom: 6rem;
-    color: white;
-    margin-bottom: 0;
-    visibility: hidden;
-}
-
-.picture-text-wrapper:hover .picture-text {
-    visibility: visible;
-}
-
+/* mobile */
 .picture-height-limit {
     max-height: 48rem;
 }
 
+/* desktop */
 @media (min-width: 550px) {
     .picture-height-limit {
-        max-height: 78rem;
+        max-height: 72rem;
     }
-}
-
-/* picture carousel */
-.scrollmenu {
-    margin-top: 1em;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-}
-
-.scrollcontent {
-    display: inline-block;
-    vertical-align: middle;
-    width: 100%;
-    text-align: center;
 }
