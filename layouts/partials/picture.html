@@ -10,7 +10,7 @@
         style="line-height: 0;">
         <img src="{{ $image.RelPermalink }}" class="picture-height-limit u-max-full-width" loading="lazy">
     </a>
-    <p style="color: gray; margin-bottom: 0rem; text-align: end; margin-top: 0.5rem;">{{ .Exif.Tags.ImageDescription }}
+    <p style="margin-bottom: 0rem; text-align: end; margin-top: 0.5rem;">{{ .Exif.Tags.ImageDescription }}
     </p>
 
     <!-- Image is rotated 90 CW -->
@@ -20,7 +20,7 @@
         style="line-height: 0;">
         <img src="{{ $image.RelPermalink }}" class="picture-height-limit u-max-full-width" loading="lazy">
     </a>
-    <p style="color: gray; margin-bottom: 0rem; text-align: end; margin-top: 0.5rem;">{{ .Exif.Tags.ImageDescription }}
+    <p style="margin-bottom: 0rem; text-align: end; margin-top: 0.5rem;">{{ .Exif.Tags.ImageDescription }}
     </p>
 
     <!-- Image is the correct rotation -->
@@ -30,7 +30,7 @@
         style="line-height: 0;">
         <img src="{{ $image.RelPermalink }}" class="u-max-full-width" loading="lazy">
     </a>
-    <p style="color: gray; margin-bottom: 0rem; text-align: end; margin-top: 0.5rem;">{{ .Exif.Tags.ImageDescription }}
+    <p style="margin-bottom: 0rem; text-align: end; margin-top: 0.5rem;">{{ .Exif.Tags.ImageDescription }}
     </p>
     {{ end }}
 </div>
@@ -42,6 +42,6 @@
     style="line-height: 0;">
     <img src="{{ $image.RelPermalink }}" class="picture-height-limit u-max-full-width" loading="lazy">
 </a>
-<p style="color: gray; margin-bottom: 0rem; text-align: end; margin-top: 0.5rem;">{{ .Exif.Tags.ImageDescription }}</p>
+<p style="margin-bottom: 0rem; text-align: end; margin-top: 0.5rem;">{{ .Exif.Tags.ImageDescription }}</p>
 {{ end }}
 {{ end }}
