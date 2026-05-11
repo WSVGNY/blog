@@ -1,37 +1,10 @@
 <html>
-{{ partial "head" .}}
+{{ partial "head" . }}
 
 <body>
-    <div class="container">
-        {{ partial "header" . }}
-
-        <!-- Displays the latest post on the home page-->
-        {{ range ( where .Site.RegularPages.ByDate.Reverse "Type" "posts" | first 1 ) }}
-        <div class="post-container">
-            {{.Content}}
-        </div>
-        {{ end }}
-
-        <!-- Displays the link to the second latest post on the home page -->
-        {{ $secondpost := index (where .Site.RegularPages.ByDate.Reverse "Type" "posts") 1 }}
-        <div style="text-align: center;">
-            <div style="width: 40%; display: inline-block; text-align: right;">
-                ← previous
-            </div>
-            <div style="width: 10%; display: inline-block;"></div>
-            <div style=" width: 40%; display: inline-block; text-align: left;">
-                {{ if $secondpost }}
-                <a href="{{ $secondpost.Permalink }}">
-                    next →
-                </a>
-                {{ else }}
-                next →
-                {{ end }}
-            </div>
-        </div>
-
-        {{ partial "footer" }}
-    </div>
+  {{ partial "header" . }}
+  {{ partial "envelope-canvas" . }}
+  {{ partial "footer" }}
 </body>
 
 </html>

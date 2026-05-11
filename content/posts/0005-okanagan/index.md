@@ -1,6 +1,6 @@
 ---
-title: "0002"
-date: 2024-01-02
+title: "Okanagan, 2025"
+date: 2024-01-05
 draft: false
 ---
 

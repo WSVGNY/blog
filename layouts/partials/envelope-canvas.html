@@ -1,0 +1,219 @@
+<!-- Created by Claude, not _really_ sure how this works. -->
+
+<style>
+  canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+  }
+
+  .header-left, .footer-left, .footer-right { z-index: 10; }
+
+  .label {
+    position: fixed;
+    color: #000;
+    background: #fff;
+    padding: 2px 6px;
+    pointer-events: none;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+
+  .label.visible { opacity: 1; }
+</style>
+
+<canvas id="c"></canvas>
+
+<script src="https://unpkg.com/roughjs@4.6.6/bundled/rough.js"></script>
+<script>
+
+// Posts injected by Hugo
+const posts = [
+  {{ range (where .Site.RegularPages.ByDate.Reverse "Type" "posts") -}}
+  {{ $label := .Title -}}
+  {{ with .Params.location }}{{ $label = . }}{{ end -}}
+  { label: {{ $label | jsonify }}, url: "{{ .RelPermalink }}" },
+  {{ end -}}
+];
+
+const canvas = document.getElementById('c');
+const rc = rough.canvas(canvas);
+const ctx = canvas.getContext('2d');
+
+function resize() {
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+
+function seededRand(seed) {
+  let s = seed;
+  return () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; };
+}
+const rand = seededRand(42);
+
+const ENV_W      = 120;
+const ENV_H      = 80;
+const HOVER_TILT = 8;
+const ANIM_SPEED = 0.1;
+const ENV_R      = Math.sqrt(ENV_W * ENV_W + ENV_H * ENV_H) / 2 + 30;
+
+function scatter(data) {
+  const xMargin = Math.max(80, canvas.width  * 0.22);
+  const yMargin = Math.max(80, canvas.height * 0.15);
+  const availW  = canvas.width  - xMargin * 2;
+  const availH  = canvas.height - yMargin * 2;
+  const placed  = [];
+
+  if (canvas.width < 550) {
+    // Mobile: single column, evenly spaced, horizontal jitter
+    data.forEach((d, i) => {
+      const t = data.length === 1 ? 0.5 : i / (data.length - 1);
+      const x = canvas.width / 2 + (rand() - 0.5) * availW * 0.5;
+      const y = yMargin + t * availH;
+      const angle = (rand() - 0.5) * 70;
+      placed.push({ ...d, x, y, angle, hovered: false, tilt: 0 });
+    });
+  } else {
+    // Desktop: grid with jitter — each envelope owns a cell, can't overlap
+    const cols  = Math.ceil(Math.sqrt(data.length * availW / availH));
+    const rows  = Math.ceil(data.length / cols);
+    const cellW = availW / cols;
+    const cellH = availH / rows;
+
+    data.forEach((d, i) => {
+      const col   = i % cols;
+      const row   = Math.floor(i / cols);
+      const cx    = xMargin + (col + 0.5) * cellW;
+      const cy    = yMargin + (row + 0.5) * cellH;
+      const x     = cx + (rand() - 0.5) * cellW * 0.5;
+      const y     = cy + (rand() - 0.5) * cellH * 0.5;
+      const angle = (rand() - 0.5) * 70;
+      placed.push({ ...d, x, y, angle, hovered: false, tilt: 0 });
+    });
+  }
+
+  return placed;
+}
+
+const envelopes = scatter(posts);
+
+function drawEnvelope(env) {
+  const { x, y, angle, tilt } = env;
+  const drawnAngle = angle + tilt * HOVER_TILT;
+  const W = ENV_W, H = ENV_H;
+
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(drawnAngle * Math.PI / 180);
+
+  ctx.fillStyle = '#000';
+  ctx.fillRect(-W / 2 + 5, -H / 2 + 5, W, H);
+
+  rc.rectangle(-W / 2, -H / 2, W, H, {
+    roughness: 1.2, strokeWidth: 1.7,
+    stroke: '#000', fill: '#fff', fillStyle: 'solid',
+  });
+
+  const closedApexY = -H / 2 + H * 0.33;
+  const openApexY   = -H / 2 - H * 0.55;
+  const apexY = closedApexY + tilt * (openApexY - closedApexY);
+  rc.polygon([
+    [-W / 2, -H / 2],
+    [ W / 2, -H / 2],
+    [0, apexY],
+  ], {
+    roughness: 1.1, strokeWidth: 1.1,
+    stroke: '#000', fill: '#fff', fillStyle: 'solid',
+  });
+
+  const bflapY = H / 2 - H * 0.22;
+  rc.line(-W / 2, H / 2, 0, bflapY, { roughness: 0.8, strokeWidth: 0.9, stroke: '#000' });
+  rc.line( W / 2, H / 2, 0, bflapY, { roughness: 0.8, strokeWidth: 0.9, stroke: '#000' });
+
+  ctx.restore();
+}
+
+envelopes.forEach(env => {
+  const el = document.createElement('div');
+  el.className = 'label';
+  el.textContent = env.label;
+  document.body.appendChild(el);
+  env._el = el;
+});
+
+function updateLabels() {
+  envelopes.forEach(env => {
+    env._el.style.left = env.x + 'px';
+    env._el.style.top  = (env.y + ENV_H / 2 + 36) + 'px';
+    env._el.classList.toggle('visible', env.hovered);
+  });
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  envelopes.forEach(drawEnvelope);
+  updateLabels();
+}
+
+let animating = false;
+
+function animate() {
+  let active = false;
+  envelopes.forEach(env => {
+    if ( env.hovered && env.tilt < 1) { env.tilt = Math.min(1, env.tilt + ANIM_SPEED); active = true; }
+    if (!env.hovered && env.tilt > 0) { env.tilt = Math.max(0, env.tilt - ANIM_SPEED); active = true; }
+  });
+  draw();
+  if (active) requestAnimationFrame(animate);
+  else animating = false;
+}
+
+function startAnimate() {
+  if (!animating) { animating = true; requestAnimationFrame(animate); }
+}
+
+function envAt(mx, my) {
+  return [...envelopes].reverse().find(env => {
+    const dx  = mx - env.x;
+    const dy  = my - env.y;
+    const rad = -(env.angle + env.tilt * HOVER_TILT) * Math.PI / 180;
+    const lx  = dx * Math.cos(rad) - dy * Math.sin(rad);
+    const ly  = dx * Math.sin(rad) + dy * Math.cos(rad);
+    return Math.abs(lx) < ENV_W / 2 && Math.abs(ly) < ENV_H / 2;
+  });
+}
+
+draw();
+
+canvas.addEventListener('mousemove', e => {
+  const { left, top } = canvas.getBoundingClientRect();
+  const hit = envAt(e.clientX - left, e.clientY - top);
+  let changed = false;
+  envelopes.forEach(env => {
+    const was = env.hovered;
+    env.hovered = env === hit;
+    if (env.hovered !== was) changed = true;
+  });
+  canvas.style.cursor = hit ? 'pointer' : 'default';
+  if (changed) startAnimate();
+});
+
+canvas.addEventListener('mouseleave', () => {
+  envelopes.forEach(e => e.hovered = false);
+  startAnimate();
+});
+
+canvas.addEventListener('click', e => {
+  const { left, top } = canvas.getBoundingClientRect();
+  const hit = envAt(e.clientX - left, e.clientY - top);
+  if (hit) window.location.href = hit.url;
+});
+
+window.addEventListener('resize', () => { resize(); draw(); });
+
+</script>

@@ -11,8 +11,6 @@
         style="line-height: 0;">
         <img src="{{ $thumb.RelPermalink }}" class="picture-height-limit u-max-full-width" loading="lazy">
     </a>
-    <p style="margin-bottom: 0rem; text-align: end; margin-top: 0.5rem;">{{ .Exif.Tags.ImageDescription }}
-    </p>
 
     <!-- Image is rotated 90 CW -->
     {{ else if eq .Exif.Tags.Orientation 6 }}
@@ -22,8 +20,6 @@
         style="line-height: 0;">
         <img src="{{ $thumb.RelPermalink }}" class="picture-height-limit u-max-full-width" loading="lazy">
     </a>
-    <p style="margin-bottom: 0rem; text-align: end; margin-top: 0.5rem;">{{ .Exif.Tags.ImageDescription }}
-    </p>
 
     <!-- Image is the correct rotation -->
     {{ else }}
@@ -33,8 +29,6 @@
         style="line-height: 0;">
         <img src="{{ $thumb.RelPermalink }}" class="u-max-full-width" loading="lazy">
     </a>
-    <p style="margin-bottom: 0rem; text-align: end; margin-top: 0.5rem;">{{ .Exif.Tags.ImageDescription }}
-    </p>
     {{ end }}
 </div>
 
@@ -46,6 +40,5 @@
     style="line-height: 0;">
     <img src="{{ $thumb.RelPermalink }}" class="picture-height-limit u-max-full-width" loading="lazy">
 </a>
-<p style="margin-bottom: 0rem; text-align: end; margin-top: 0.5rem;">{{ .Exif.Tags.ImageDescription }}</p>
 {{ end }}
 {{ end }}

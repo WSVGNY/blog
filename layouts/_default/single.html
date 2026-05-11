@@ -9,29 +9,6 @@
             {{.Content}}
         </div>
 
-        <!-- Displays the link to the previous and next (if any) post -->
-        <div style="text-align: center;">
-            <div style="width: 40%; display: inline-block; text-align: right;">
-                {{ if .Next }}
-                <a class="title" href="{{ .Next.Permalink }}">
-                    ← previous
-                </a>
-                {{ else }}
-                ← previous
-                {{ end }}
-            </div>
-            <div style="width: 10%; display: inline-block;"></div>
-            <div style=" width: 40%; display: inline-block; text-align: left;">
-                {{ if .Prev }}
-                <a class="title" href="{{ .Prev.Permalink }}">
-                    next →
-                </a>
-                {{ else }}
-                next →
-                {{ end }}
-            </div>
-        </div>
-
         {{ partial "footer" }}
     </div>
 </body>
