@@ -83,7 +83,7 @@ img {
 .picture-container-with-bottom-margin {
     width: fit-content;
     margin: auto;
-    margin-bottom: 1rem;
+    margin-bottom: 4rem;
 }
 
 .picture-height-limit {
