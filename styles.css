@@ -62,10 +62,17 @@
 
 /* single post */
 .post-container {
-    margin-bottom: 6rem;
+    margin-bottom: 0rem;
 }
 
 /* --- pictures --- */
+img {
+    box-shadow:
+        1px 1px 0px rgba(0,0,0,0.08),
+        2px 4px 8px rgba(0,0,0,0.12),
+        4px 8px 20px rgba(0,0,0,0.08);
+}
+
 .picture-container-no-bottom-margin {
     width: fit-content;
     margin: auto;
@@ -76,7 +83,11 @@
 .picture-container-with-bottom-margin {
     width: fit-content;
     margin: auto;
-    margin-bottom: 6rem;
+    margin-bottom: 1rem;
+}
+
+.picture-height-limit {
+    max-height: 64rem;
 }
 
 /* desktop */
@@ -84,23 +95,12 @@
     .picture-container-with-bottom-margin {
         width: fit-content;
         margin: auto;
-        margin-bottom: 16rem;
+        margin-bottom: 10rem;
     }
 }
 
-img {
-    /* #47 from https://getcssscan.com/css-box-shadow-examples */
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 3px 5px;
-}
-
-/* mobile */
-.picture-height-limit {
-    max-height: 48rem;
-}
-
-/* desktop */
 @media (min-width: 550px) {
     .picture-height-limit {
-        max-height: 72rem;
+        max-height: 61.2rem;
     }
 }
