@@ -7,5 +7,5 @@ title = "William Sevigny"
       wrapStandAloneImageWithinParagraph = false
       [markup.goldmark.parser.attribute]
         block = true
-[cascade._build]
+[cascade.build]
     publishResources = false
