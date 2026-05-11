@@ -5,12 +5,13 @@
     <div class="container">
         {{ partial "header" . }}
 
+        <p style="text-align: center; margin-bottom: 3rem;">{{ .Title }}</p>
+
         <div class="post-container">
             {{.Content}}
         </div>
 
         {{ partial "footer" }}
-    </div>
 </body>
 
 </html>

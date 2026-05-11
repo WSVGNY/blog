@@ -1,0 +1,206 @@
+<style>
+  canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+  }
+
+  .header-left, .footer-left, .footer-right { z-index: 10; }
+
+  .book-label {
+    position: fixed;
+    color: #000;
+    background: #fff;
+    padding: 2px 8px;
+    pointer-events: none;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+
+  .book-label.visible { opacity: 1; }
+</style>
+
+<canvas id="c"></canvas>
+
+<script src="https://unpkg.com/roughjs@4.6.6/bundled/rough.js"></script>
+<script>
+
+const posts = [
+  {{ range (where .Site.RegularPages.ByDate.Reverse "Type" "posts") -}}
+  {{ $label := .Title -}}
+  {{ with .Params.location }}{{ $label = . }}{{ end -}}
+  { label: {{ $label | jsonify }}, url: "{{ .RelPermalink }}" },
+  {{ end -}}
+];
+
+const canvas = document.getElementById('c');
+const rc = rough.canvas(canvas);
+const ctx = canvas.getContext('2d');
+
+function resize() {
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+
+function seededRand(seed) {
+  let s = seed;
+  return () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; };
+}
+const rand = seededRand(42);
+
+const LIFT    = 28;
+const SHELF_H = 18;
+const GAP     = 4;
+const SHELF_Y = () => canvas.height * 0.65;
+
+// Cycling styles — each post gets a distinct look
+const styles = [
+  { fill: '#fff', fillStyle: 'hachure',     hachureGap: 9,  roughness: 2.4, band:  { pos: 'top',    h: 16, fill: '#000' } },
+  { fill: '#000', fillStyle: 'solid',        roughness: 0.7, inset: { margin: 7, stroke: '#fff' } },
+  { fill: '#fff', fillStyle: 'solid',        roughness: 0.6, band:  { pos: 'bottom', h: 12, fill: '#000' }, band2: { pos: 'top', h: 6, fill: '#000' } },
+  { fill: '#fff', fillStyle: 'cross-hatch',  hachureGap: 11, roughness: 1.8, inset: { margin: 9, stroke: '#000' } },
+  { fill: '#000', fillStyle: 'solid',        roughness: 1.0, band:  { pos: 'top',    h: 28, fill: '#fff' } },
+];
+
+// Build book dimensions from seeded rand so layout is stable across refreshes
+const booksData = posts.map((post, i) => ({
+  ...styles[i % styles.length],
+  label: post.label,
+  url:   post.url,
+  w: 46 + Math.floor(rand() * 32),  // 46–78 px spine width
+  h: 175 + Math.floor(rand() * 90), // 175–265 px height
+}));
+
+function buildBooks() {
+  const totalW = booksData.reduce((s, b) => s + b.w + GAP, 0) - GAP;
+  // Scale down if books overflow on narrow screens
+  const scale  = Math.min(1, (canvas.width * 0.88) / totalW);
+  let x = canvas.width / 2 - (totalW * scale) / 2;
+  const sy = SHELF_Y();
+
+  return booksData.map(b => {
+    const el = document.createElement('div');
+    el.className = 'book-label';
+    el.textContent = b.label;
+    document.body.appendChild(el);
+
+    const book = {
+      ...b,
+      w: b.w * scale,
+      h: b.h * scale,
+      x, sy,
+      hovered: false,
+      _el: el,
+    };
+    x += book.w + GAP * scale;
+    return book;
+  });
+}
+
+let books = buildBooks();
+
+function drawBook(b) {
+  const ly = b.hovered ? -LIFT : 0;
+  const by = b.sy - b.h + ly;
+
+  rc.rectangle(b.x, by, b.w, b.h, {
+    roughness: b.roughness,
+    strokeWidth: 1.6,
+    stroke: '#000',
+    fill: b.fill,
+    fillStyle: b.fillStyle,
+    hachureGap: b.hachureGap || 8,
+    hachureAngle: 45,
+  });
+
+  [b.band, b.band2].forEach(band => {
+    if (!band) return;
+    const bandY = band.pos === 'top' ? by : by + b.h - band.h;
+    rc.rectangle(b.x, bandY, b.w, band.h, {
+      roughness: 0.6, strokeWidth: 0,
+      stroke: band.fill, fill: band.fill, fillStyle: 'solid',
+    });
+  });
+
+  if (b.inset) {
+    const m = b.inset.margin;
+    rc.rectangle(b.x + m, by + m, b.w - m * 2, b.h - m * 2, {
+      roughness: 1.0, strokeWidth: 1.0,
+      stroke: b.inset.stroke, fill: 'transparent',
+    });
+  }
+}
+
+function drawShelf() {
+  const sy = SHELF_Y();
+  const totalW = books.reduce((s, b) => s + b.w + GAP, 0) - GAP;
+  const sx = canvas.width / 2 - totalW / 2 - 24;
+  rc.rectangle(sx, sy, totalW + 48, SHELF_H, {
+    roughness: 1.0, strokeWidth: 1.5,
+    stroke: '#000', fill: '#000', fillStyle: 'solid',
+  });
+}
+
+function updateLabels() {
+  books.forEach(b => {
+    const ly = b.hovered ? -LIFT : 0;
+    b._el.style.left = (b.x + b.w / 2) + 'px';
+    b._el.style.top  = (b.sy - b.h + ly - 26) + 'px';
+    b._el.classList.toggle('visible', b.hovered);
+  });
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawShelf();
+  books.forEach(drawBook);
+  updateLabels();
+}
+
+function bookAt(mx, my) {
+  return [...books].reverse().find(b => {
+    const ly = b.hovered ? -LIFT : 0;
+    return mx >= b.x && mx <= b.x + b.w &&
+           my >= b.sy - b.h + ly && my <= b.sy + ly;
+  });
+}
+
+draw();
+
+canvas.addEventListener('mousemove', e => {
+  const { left, top } = canvas.getBoundingClientRect();
+  const hit = bookAt(e.clientX - left, e.clientY - top);
+  let changed = false;
+  books.forEach(b => {
+    const was = b.hovered;
+    b.hovered = b === hit;
+    if (b.hovered !== was) changed = true;
+  });
+  canvas.style.cursor = hit ? 'pointer' : 'default';
+  if (changed) draw();
+});
+
+canvas.addEventListener('mouseleave', () => {
+  books.forEach(b => b.hovered = false);
+  draw();
+});
+
+canvas.addEventListener('click', e => {
+  const { left, top } = canvas.getBoundingClientRect();
+  const hit = bookAt(e.clientX - left, e.clientY - top);
+  if (hit) window.location.href = hit.url;
+});
+
+window.addEventListener('resize', () => {
+  resize();
+  books.forEach(b => document.body.removeChild(b._el));
+  books = buildBooks();
+  draw();
+});
+
+</script>
