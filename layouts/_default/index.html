@@ -1,10 +1,12 @@
 <html>
 {{ partial "head" . }}
 
-<body>
-  {{ partial "header" . }}
-  {{ partial "bookshelf" . }}
-  {{ partial "footer" }}
+<body class="list-page">
+    <div class="container">
+        {{ partial "header" . }}
+        {{ partial "post-list" . }}
+        {{ partial "footer" }}
+    </div>
 </body>
 
 </html>

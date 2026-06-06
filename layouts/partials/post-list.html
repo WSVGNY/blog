@@ -1,0 +1,15 @@
+<div>
+    <p>Hello, welcome to my website</p>
+    <ul class="post-list">
+        {{ range (where .Site.RegularPages.ByDate.Reverse "Type" "posts") }}
+        <li class="post-list-item">
+            <span>
+                {{ .Title }}
+            </span>
+            <a href="{{ .Permalink }}">
+                » click here
+            </a>
+        </li>
+        {{ end }}
+    </ul>
+</div>

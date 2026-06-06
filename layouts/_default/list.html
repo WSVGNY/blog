@@ -1,26 +1,11 @@
 <html>
 {{ partial "head" .}}
 
-<body>
+<body class="list-page">
     <div class="container">
         {{ partial "header" . }}
-
-        <!-- Display all posts -->
-        <ul class="post-list">
-            {{ range $index, $page := .Pages }}
-            <li class="post-list-item">
-                <span class="date">
-                    {{ .Title }}
-                </span>
-                <a class="title" href="{{.Permalink}}">
-                    go to page
-                </a>
-            </li>
-            {{ end }}
-        </ul>
-
+        {{ partial "post-list" . }}
         {{ partial "footer" }}
-
     </div>
 </body>
 

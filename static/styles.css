@@ -41,6 +41,18 @@
     margin-bottom: 2rem;
 }
 
+/* list page container override */
+.list-page .container {
+    margin-left: 0;
+    padding-left: 3rem;
+}
+
+@media (min-width: 550px) {
+    .list-page .container {
+        padding-left: 5rem;
+    }
+}
+
 /* post list */
 .post-list {
     list-style-type: none;
@@ -48,16 +60,7 @@
 }
 
 .post-list-item {
-    display: flex;
     margin-bottom: 0;
-}
-
-.post-list-item .date {
-    flex: 0 0 150px;
-}
-
-.post-list-item .title {
-    text-decoration: none;
 }
 
 /* single post */
