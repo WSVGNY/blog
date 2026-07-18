@@ -5,7 +5,9 @@
     <div class="container">
         {{ partial "header" . }}
 
-        <p style="text-align: center; margin-bottom: 3rem;">{{ .Title }}</p>
+        <p style="text-align: center; margin-bottom: 3rem; text-transform: uppercase;">
+            {{ .Title }}
+        </p>
 
         <div class="post-container">
             {{.Content}}

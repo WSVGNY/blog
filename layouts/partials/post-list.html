@@ -1,11 +1,11 @@
 <div>
-    <p>
-        williamsevigny.com
+    <p style="text-decoration: underline; font-style: italic;">
+        WILLIAMSEVIGNY.COM
     </p>
     <ul class="post-list">
         {{ range (where .Site.RegularPages.ByDate.Reverse "Type" "posts") }}
         <li class="post-list-item">
-            <span>
+            <span style="text-transform: uppercase;">
                 {{ .Title }}
             </span>
             <a href="{{ .Permalink }}">
