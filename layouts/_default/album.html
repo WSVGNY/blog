@@ -2,23 +2,20 @@
 {{ partial "head" . }}
 
 <!-- One continuous album: every post whose `album` matches this page's file name
-     (content/photos.md collects `album: photos`) becomes a chapter, and its
-     pictures are laid out as spreads, one per screen. -->
+     becomes a chapter, and its pictures are laid out as spreads, one per screen. -->
 {{ $album := .File.ContentBaseName }}
-{{ $trips := slice }}
-{{ range (where .Site.RegularPages.ByDate.Reverse "Type" "posts") }}
-{{ if eq .Params.album $album }}{{ $trips = $trips | append . }}{{ end }}
-{{ end }}
+{{ $posts := where .Site.RegularPages.ByDate.Reverse "Type" "posts" }}
+{{ $chapters := where $posts "Params.album" $album }}
 
-<body class="album-page">
-    <main class="album" id="album">
-        <!-- Cover: laid out like the home page, with the album's name as the heading -->
-        <section class="spread spread-text spread-cover">
+<body>
+    <main class="album">
+        <!-- Cover: the album's name, then the list of its chapters -->
+        <section class="spread spread-cover">
             <div class="page">
                 <div>
                     <p style="font-style: italic; text-transform: uppercase;">{{ .Title }}</p>
                     <ul class="post-list">
-                        {{ range $trips }}
+                        {{ range $chapters }}
                         <li class="post-list-item" style="text-transform: uppercase;">{{ .Title }}</li>
                         {{ end }}
                     </ul>
@@ -26,20 +23,20 @@
             </div>
         </section>
 
-        {{ range $trips }}
-        {{ $name := .Title }}
-        <!-- "0003-oregon-coast" can be linked to as /photos/#oregon-coast -->
+        {{ range $chapters }}
+        {{ $chapterTitle := .Title }}
+        <!-- A chapter's link drops the number from its folder name: "0003-oregon-coast" is #oregon-coast -->
         {{ $anchor := replaceRE `^\d+-` `` .File.ContentBaseName }}
 
-        <!-- Same pictures, in the same order, as the picture-list shortcode -->
+        <!-- This chapter's pictures, last file name first -->
         {{ $images := .Resources.Match "images/*" }}
         {{ $images = where $images ".MediaType.SubType" "in" (slice "jpeg" "png") }}
         {{ $images = sort $images "Name" "desc" }}
 
         <!-- Chapter title -->
-        <section class="spread spread-text" id="{{ $anchor }}" data-trip="{{ $name }}">
+        <section class="spread spread-chapter" id="{{ $anchor }}" data-chapter="{{ $chapterTitle }}">
             <div class="page">
-                <p class="album-chapter">{{ $name }}</p>
+                <p class="chapter-title">{{ $chapterTitle }}</p>
             </div>
         </section>
 
@@ -55,21 +52,21 @@
 
         {{ if not $isPortrait }}
         <!-- Landscape: one picture across both pages -->
-        <section class="spread spread-wide" data-trip="{{ $name }}">
+        <section class="spread spread-landscape" data-chapter="{{ $chapterTitle }}">
             <div class="page pswp-gallery">{{ partial "picture" $image }}</div>
         </section>
 
         {{ else if $nextIsPortrait }}
         <!-- Two portraits: one per page -->
         {{ $shownInPair = true }}
-        <section class="spread spread-pair" data-trip="{{ $name }}">
+        <section class="spread spread-portraits" data-chapter="{{ $chapterTitle }}">
             <div class="page pswp-gallery">{{ partial "picture" $image }}</div>
             <div class="page pswp-gallery">{{ partial "picture" $next }}</div>
         </section>
 
         {{ else }}
         <!-- Single portrait: picture on the right, left page blank -->
-        <section class="spread spread-pair" data-trip="{{ $name }}">
+        <section class="spread spread-portraits" data-chapter="{{ $chapterTitle }}">
             <div class="page page-blank"></div>
             <div class="page pswp-gallery">{{ partial "picture" $image }}</div>
         </section>
@@ -80,8 +77,8 @@
         {{ end }}
     </main>
 
-    <!-- "OREGON COAST, 2024 · 21 / 43", filled in by the script below -->
-    <div id="album-label"></div>
+    <!-- Page counter, e.g. "OREGON COAST, 2024 · 21 / 43" -->
+    <div class="album-counter"></div>
 
     {{ partial "header" . }}
     {{ partial "footer" }}
@@ -90,11 +87,11 @@
         // Keyboard flipping and the page counter for the wide layout, where each
         // spread fills the screen. Scrolling itself is the browser's own.
         // On narrow screens the album is an ordinary page, so the handlers do nothing.
-        const album = document.getElementById('album');
-        const label = document.getElementById('album-label');
+        const album = document.querySelector('.album');
+        const counter = document.querySelector('.album-counter');
         const spreads = album.querySelectorAll('.spread');
 
-        // Same breakpoint as the album section of styles.css.
+        // Wide screens show one spread per screen.
         const wideLayout = window.matchMedia('(min-width: 700px)');
 
         // Every spread is exactly one screen tall.
@@ -124,15 +121,15 @@
             event.preventDefault();
         });
 
-        function updateLabel() {
+        function updateCounter() {
             const number = currentSpread();
-            const trip = spreads[number].dataset.trip; // the cover has none
+            const chapter = spreads[number].dataset.chapter; // the cover has none
             const position = (number + 1) + ' / ' + spreads.length;
-            label.textContent = trip ? trip + ' · ' + position : position;
+            counter.textContent = chapter ? chapter + ' · ' + position : position;
         }
 
-        album.addEventListener('scroll', updateLabel, { passive: true });
-        updateLabel();
+        album.addEventListener('scroll', updateCounter, { passive: true });
+        updateCounter();
     </script>
 </body>
 

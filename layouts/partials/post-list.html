@@ -4,7 +4,7 @@
     </p>
     <ul class="post-list">
         {{ range (where .Site.RegularPages.ByDate.Reverse "Type" "posts") }}
-        <!-- Posts with an `album` live in that album instead of the list. -->
+        <!-- Posts with an `album` are left out of this list. -->
         {{ if not .Params.album }}
         <li class="post-list-item">
             <span style="text-transform: uppercase;">
