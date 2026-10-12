@@ -15,3 +15,5 @@ hugo.linux
 # Post images
 /content/posts/**/images/
 /_local/
+# Claude desktop app preview config
+/.claude/
