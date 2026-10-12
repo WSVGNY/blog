@@ -3,10 +3,8 @@ title: "Cow, 2026"
 date: 2024-01-07
 draft: false
 ---
-A tiny macOS application that adds a cow to your desktop. Built in one evening with Claude Code. See the cow's evolution from start to finish!
+A tiny [macOS application](https://github.com/WSVGNY/cow) built in one evening with Claude Code. This is the cow's evolution.
 
-https://github.com/WSVGNY/cow
-
-_
+.
 
 {{< picture-list "images/*" >}}
