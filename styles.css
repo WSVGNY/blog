@@ -103,69 +103,54 @@
 }
 /* --- album --- */
 
-/* The album has two layouts, each written out in full below:
-   narrow screens scroll down one long page, wide screens scroll down one
-   spread per screen. */
+/* Each page of the album holds one thing, in the centre: the contents,
+   a chapter's title, or one picture.
+   There are two layouts, each written out in full below: narrow screens
+   show the pages one under the other in a single scroll, wide screens show
+   one page per screen. */
 
-.chapter-title {
-    margin: 0;
+.page {
+    text-align: center;
+}
+
+/* nothing below the list, so the contents sit exactly in the centre */
+.page-contents ul {
+    margin-bottom: 0;
+}
+
+.page-chapter {
     text-transform: uppercase;
 }
 
-.album img {
-    display: block;
-    height: auto;
-}
-
-/* narrow: one long page to scroll down, chapters one after the other.
-   The page has the same 10rem above its first line as below its last picture. */
+/* narrow: the pages one under the other, in a single scroll */
 @media not (min-width: 700px) {
     .album {
-        padding: 10rem 0;
+        padding-bottom: 10rem;
     }
 
-    /* Every space between two things is the top margin of the lower one,
-       so nothing hangs below the last picture. */
-    .spread {
-        display: flex;
-        flex-direction: column;
-        gap: 4rem;
+    /* Pictures are 4rem apart. The gap is the top margin of the lower
+       thing, so nothing hangs below the last picture. */
+    .page {
         margin-top: 4rem;
         padding: 0 1.4rem;
     }
 
-    /* a chapter starts like a page of its own: 10rem above its title,
-       also when a link scrolls straight to it */
-    .spread-chapter {
-        margin-top: 10rem;
-        scroll-margin-top: 10rem;
-    }
-
-    /* the first picture sits closer to its title than pictures do to each other */
-    .spread-chapter + .spread {
-        margin-top: 3rem;
-    }
-
-    /* the cover fills the first screen, so the pictures start below it;
-       its text sits further in from the edge than the pictures */
-    .spread-cover {
+    /* the contents fill the first screen, so the pictures start below it */
+    .page-contents {
         margin-top: 0;
-        min-height: calc(100dvh - 10rem);
-        padding: 0 3rem;
+        min-height: 100dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    .page-blank {
-        display: none;
+    /* a chapter's title has 10rem above it and 10rem below it */
+    .page-chapter {
+        margin-top: 10rem;
     }
 
-    .chapter-title {
-        text-align: center;
-    }
-
-    /* no height limit, so a full-width portrait keeps its proportions */
-    .album img {
-        width: 100%;
-        max-height: none;
+    .page-chapter + .page {
+        margin-top: 10rem;
     }
 
     .album-counter {
@@ -173,7 +158,7 @@
     }
 }
 
-/* wide: scroll down through spreads of two facing pages, one per screen */
+/* wide: one page per screen, scrolled through one at a time */
 @media (min-width: 700px) {
     .album {
         position: fixed;
@@ -188,7 +173,7 @@
         display: none;
     }
 
-    .spread {
+    .page {
         height: 100%;
         box-sizing: border-box;
         /* 7rem keeps a picture clear of the top and bottom corners' text */
@@ -197,45 +182,15 @@
         align-items: center;
         justify-content: center;
         scroll-snap-align: start;
-        /* a fast scroll still stops on every spread instead of flying past several */
+        /* a fast scroll still stops on every page instead of flying past several */
         scroll-snap-stop: always;
     }
 
-    /* a page fills its spread and centres what is on it */
-    .page {
-        flex: 0 0 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    /* two portraits share a spread: half each, with room between them */
-    .spread-portraits .page {
-        flex-basis: 50%;
-        box-sizing: border-box;
-        padding: 0 3rem;
-    }
-
-    /* the cover's text starts at the top left, 10rem down */
-    .spread-cover {
-        align-items: flex-start;
-        padding-top: 10rem;
-    }
-
-    .spread-cover .page {
-        justify-content: flex-start;
-    }
-
     /* Pictures are 612px on their long side. Only on a short or narrow
-       window do they shrink to stay on screen: 14rem is the spread's padding
-       above plus below, 11rem the padding either side of one portrait. */
-    .spread-landscape img {
-        max-width: min(61.2rem, 80vw);
-        max-height: calc(100dvh - 14rem);
-    }
-
-    .spread-portraits img {
-        max-width: calc(50vw - 11rem);
+       window do they shrink to stay inside the page's padding: 10rem is
+       that padding left plus right, 14rem above plus below. */
+    .album img {
+        max-width: min(61.2rem, calc(100vw - 10rem));
         max-height: min(61.2rem, calc(100dvh - 14rem));
     }
 
