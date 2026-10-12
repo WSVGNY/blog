@@ -105,10 +105,10 @@
 
 /* The album has two layouts, each written out in full below:
    narrow screens scroll down one long page, wide screens scroll down one
-   spread per screen.
-   The 700px breakpoint is also used by the script in layouts/_default/album.html. */
+   spread per screen. */
 
-.album-chapter {
+.chapter-title {
+    margin: 0;
     text-transform: uppercase;
 }
 
@@ -117,60 +117,67 @@
     height: auto;
 }
 
-/* narrow: one long page to scroll down, trips one after the other */
+/* narrow: one long page to scroll down, chapters one after the other.
+   The page has the same 10rem above its first line as below its last picture. */
 @media not (min-width: 700px) {
     .album {
-        padding: 10rem 3rem 12rem;
+        padding: 10rem 0;
     }
 
+    /* Every space between two things is the top margin of the lower one,
+       so nothing hangs below the last picture. */
     .spread {
         display: flex;
-        gap: 1rem;
-        margin-bottom: 1rem;
-        scroll-margin-top: 2rem;
+        flex-direction: column;
+        gap: 4rem;
+        margin-top: 4rem;
+        padding: 0 1.4rem;
     }
 
-    .page {
-        flex: 1 1 0;
-        min-width: 0;
+    /* a chapter starts like a page of its own: 10rem above its title,
+       also when a link scrolls straight to it */
+    .spread-chapter {
+        margin-top: 10rem;
+        scroll-margin-top: 10rem;
+    }
+
+    /* the first picture sits closer to its title than pictures do to each other */
+    .spread-chapter + .spread {
+        margin-top: 3rem;
+    }
+
+    /* the cover fills the first screen, so the pictures start below it;
+       its text sits further in from the edge than the pictures */
+    .spread-cover {
+        margin-top: 0;
+        min-height: calc(100dvh - 10rem);
+        padding: 0 3rem;
     }
 
     .page-blank {
         display: none;
     }
 
-    /* the cover fills the first screen, so the pictures start below it */
-    .spread-cover {
-        margin-bottom: 0;
-        min-height: calc(100vh - 10rem);
-        min-height: calc(100dvh - 10rem);
+    .chapter-title {
+        text-align: center;
     }
 
-    .album-chapter {
-        margin: 8rem 0 1rem;
-    }
-
-    /* max-height undoes .picture-height-limit, which would squash a full-width portrait */
+    /* no height limit, so a full-width portrait keeps its proportions */
     .album img {
         width: 100%;
         max-height: none;
     }
 
-    #album-label {
+    .album-counter {
         display: none;
     }
 }
 
 /* wide: scroll down through spreads of two facing pages, one per screen */
 @media (min-width: 700px) {
-    .album-page {
-        overflow: hidden;
-    }
-
     .album {
         position: fixed;
         inset: 0;
-        overflow-x: hidden;
         overflow-y: auto;
         scroll-snap-type: y mandatory;
         scroll-behavior: smooth;
@@ -184,61 +191,60 @@
     .spread {
         height: 100%;
         box-sizing: border-box;
-        padding: 10rem 5rem;
+        /* 7rem keeps a picture clear of the top and bottom corners' text */
+        padding: 7rem 5rem;
         display: flex;
         align-items: center;
         justify-content: center;
         scroll-snap-align: start;
+        /* a fast scroll still stops on every spread instead of flying past several */
+        scroll-snap-stop: always;
     }
 
+    /* a page fills its spread and centres what is on it */
     .page {
-        flex: 0 0 50%;
-        min-width: 0;
-        box-sizing: border-box;
-        padding: 0 3rem;
+        flex: 0 0 100%;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
-    .spread-wide .page,
-    .spread-text .page {
-        flex-basis: 100%;
-        padding: 0;
+    /* two portraits share a spread: half each, with room between them */
+    .spread-portraits .page {
+        flex-basis: 50%;
+        box-sizing: border-box;
+        padding: 0 3rem;
     }
 
-    /* cover sits top-left under the logo, where the home page list is */
+    /* the cover's text starts at the top left, 10rem down */
     .spread-cover {
         align-items: flex-start;
+        padding-top: 10rem;
     }
 
     .spread-cover .page {
         justify-content: flex-start;
     }
 
-    .album-chapter {
-        margin: 0;
+    /* Pictures are 612px on their long side. Only on a short or narrow
+       window do they shrink to stay on screen: 14rem is the spread's padding
+       above plus below, 11rem the padding either side of one portrait. */
+    .spread-landscape img {
+        max-width: min(61.2rem, 80vw);
+        max-height: calc(100dvh - 14rem);
     }
 
-    /* pictures fit the screen, leaving room for the logo and footer */
-    .album img {
-        width: auto;
-        max-width: calc(100vw - 10rem);
-        max-height: calc(100vh - 20rem);
-        max-height: calc(100dvh - 20rem);
-    }
-
-    .spread-pair img {
+    .spread-portraits img {
         max-width: calc(50vw - 11rem);
+        max-height: min(61.2rem, calc(100dvh - 14rem));
     }
 
-    /* runs down the right margin, beside the pictures, halfway up the screen */
-    #album-label {
+    /* page counter: top-right corner, one line 4rem tall */
+    .album-counter {
         position: fixed;
-        right: 2rem;
-        top: 50%;
-        transform: translateY(-50%);
-        writing-mode: vertical-rl;
+        right: 5rem;
+        top: 3rem;
+        line-height: 4rem;
         text-transform: uppercase;
         white-space: nowrap;
     }
