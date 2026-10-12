@@ -4,8 +4,6 @@
     </p>
     <ul class="post-list">
         {{ range (where .Site.RegularPages.ByDate.Reverse "Type" "posts") }}
-        <!-- Posts with an `album` are left out of this list. -->
-        {{ if not .Params.album }}
         <li class="post-list-item">
             <span style="text-transform: uppercase;">
                 {{ .Title }}
@@ -15,8 +13,8 @@
             </a>
         </li>
         {{ end }}
-        {{ end }}
-        {{ range .Site.RegularPages.ByTitle }}
+        <!-- Albums come after the posts -->
+        {{ range .Site.Sections.ByTitle }}
         {{ if eq .Layout "album" }}
         <li class="post-list-item">
             <span style="text-transform: uppercase;">

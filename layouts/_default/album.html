@@ -1,130 +1,96 @@
 <html>
 {{ partial "head" . }}
 
-<!-- One continuous album: every post whose `album` matches this page's file name
-     becomes a chapter, and its pictures are laid out as spreads, one per screen. -->
-{{ $album := .File.ContentBaseName }}
-{{ $posts := where .Site.RegularPages.ByDate.Reverse "Type" "posts" }}
-{{ $chapters := where $posts "Params.album" $album }}
+<!-- One continuous album: every post in this folder is a chapter, newest first.
+     Each page of the album holds one thing: the contents, a chapter's title,
+     or one picture. -->
+{{ $chapters := .RegularPages.ByDate.Reverse }}
 
 <body>
     <main class="album">
-        <!-- Cover: the album's name, then the list of its chapters -->
-        <section class="spread spread-cover">
-            <div class="page">
-                <div>
-                    <p style="font-style: italic; text-transform: uppercase;">{{ .Title }}</p>
-                    <ul class="post-list">
-                        {{ range $chapters }}
-                        <li class="post-list-item" style="text-transform: uppercase;">{{ .Title }}</li>
-                        {{ end }}
-                    </ul>
-                </div>
+        <!-- Contents: the album's name, then the list of its chapters -->
+        <section class="page page-contents">
+            <!-- one block, so name and list are centred together -->
+            <div>
+                <p style="font-style: italic; text-transform: uppercase;">{{ .Title }}</p>
+                <ul class="post-list">
+                    {{ range $chapters }}
+                    <li class="post-list-item" style="text-transform: uppercase;">{{ .Title }}</li>
+                    {{ end }}
+                </ul>
             </div>
         </section>
 
         {{ range $chapters }}
         {{ $chapterTitle := .Title }}
-        <!-- A chapter's link drops the number from its folder name: "0003-oregon-coast" is #oregon-coast -->
-        {{ $anchor := replaceRE `^\d+-` `` .File.ContentBaseName }}
 
         <!-- This chapter's pictures, last file name first -->
         {{ $images := .Resources.Match "images/*" }}
         {{ $images = where $images ".MediaType.SubType" "in" (slice "jpeg" "png") }}
         {{ $images = sort $images "Name" "desc" }}
 
-        <!-- Chapter title -->
-        <section class="spread spread-chapter" id="{{ $anchor }}" data-chapter="{{ $chapterTitle }}">
-            <div class="page">
-                <p class="chapter-title">{{ $chapterTitle }}</p>
-            </div>
-        </section>
+        <section class="page page-chapter" data-chapter="{{ $chapterTitle }}">{{ $chapterTitle }}</section>
 
-        <!-- A picture already shown as the second half of a pair is skipped on its own turn -->
-        {{ $shownInPair := false }}
-        {{ range $index, $image := $images }}
-        {{ if $shownInPair }}
-        {{ $shownInPair = false }}
-        {{ else }}
-        {{ $next := index $images (add $index 1) }}
-        {{ $isPortrait := partial "is-portrait" $image }}
-        {{ $nextIsPortrait := and $next (partial "is-portrait" $next) }}
-
-        {{ if not $isPortrait }}
-        <!-- Landscape: one picture across both pages -->
-        <section class="spread spread-landscape" data-chapter="{{ $chapterTitle }}">
-            <div class="page pswp-gallery">{{ partial "picture" $image }}</div>
-        </section>
-
-        {{ else if $nextIsPortrait }}
-        <!-- Two portraits: one per page -->
-        {{ $shownInPair = true }}
-        <section class="spread spread-portraits" data-chapter="{{ $chapterTitle }}">
-            <div class="page pswp-gallery">{{ partial "picture" $image }}</div>
-            <div class="page pswp-gallery">{{ partial "picture" $next }}</div>
-        </section>
-
-        {{ else }}
-        <!-- Single portrait: picture on the right, left page blank -->
-        <section class="spread spread-portraits" data-chapter="{{ $chapterTitle }}">
-            <div class="page page-blank"></div>
-            <div class="page pswp-gallery">{{ partial "picture" $image }}</div>
+        {{ range $images }}
+        <section class="page pswp-gallery" data-chapter="{{ $chapterTitle }}">
+            {{ partial "picture" . }}
         </section>
         {{ end }}
 
-        {{ end }}
-        {{ end }}
         {{ end }}
     </main>
 
-    <!-- Page counter, e.g. "OREGON COAST, 2024 · 21 / 43" -->
+    <!-- Page counter, e.g. "OREGON COAST, 2024 · 21 / 50" -->
     <div class="album-counter"></div>
 
+    <!-- After the album, so they are drawn on top of it -->
     {{ partial "header" . }}
     {{ partial "footer" }}
 
     <script>
         // Keyboard flipping and the page counter for the wide layout, where each
-        // spread fills the screen. Scrolling itself is the browser's own.
-        // On narrow screens the album is an ordinary page, so the handlers do nothing.
+        // album page fills the screen. Scrolling itself is the browser's own.
+        // On narrow screens the album just scrolls, so the handlers do nothing.
         const album = document.querySelector('.album');
         const counter = document.querySelector('.album-counter');
-        const spreads = album.querySelectorAll('.spread');
+        const pages = album.querySelectorAll('.page');
 
-        // Wide screens show one spread per screen.
+        // Wide screens show one page per screen.
         const wideLayout = window.matchMedia('(min-width: 700px)');
 
-        // Every spread is exactly one screen tall.
-        function currentSpread() {
+        // Every page is exactly one screen tall.
+        function currentPage() {
             return Math.round(album.scrollTop / album.clientHeight);
         }
 
-        // The browser stops at the first and last spread by itself.
-        function goToSpread(number) {
+        // The browser stops at the first and last page by itself.
+        function goToPage(number) {
             album.scrollTo({ top: number * album.clientHeight });
         }
 
         document.addEventListener('keydown', function (event) {
             const lightboxOpen = document.querySelector('.pswp--open') !== null;
-            if (!wideLayout.matches || lightboxOpen) return;
+            // Cmd+Left and the like are the browser's own shortcuts.
+            const withModifier = event.metaKey || event.ctrlKey || event.altKey;
+            if (!wideLayout.matches || lightboxOpen || withModifier) return;
 
             const key = event.key;
             const forward = key === 'ArrowDown' || key === 'ArrowRight' || key === ' ' || key === 'PageDown';
             const back = key === 'ArrowUp' || key === 'ArrowLeft' || key === 'PageUp';
 
-            if (forward) goToSpread(currentSpread() + 1);
-            else if (back) goToSpread(currentSpread() - 1);
-            else if (key === 'Home') goToSpread(0);
-            else if (key === 'End') goToSpread(spreads.length - 1);
+            if (forward) goToPage(currentPage() + 1);
+            else if (back) goToPage(currentPage() - 1);
+            else if (key === 'Home') goToPage(0);
+            else if (key === 'End') goToPage(pages.length - 1);
             else return;
 
             event.preventDefault();
         });
 
         function updateCounter() {
-            const number = currentSpread();
-            const chapter = spreads[number].dataset.chapter; // the cover has none
-            const position = (number + 1) + ' / ' + spreads.length;
+            const number = currentPage();
+            const chapter = pages[number].dataset.chapter; // the contents page has none
+            const position = (number + 1) + ' / ' + pages.length;
             counter.textContent = chapter ? chapter + ' · ' + position : position;
         }
 

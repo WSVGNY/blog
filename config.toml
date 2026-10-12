@@ -1,6 +1,7 @@
 baseURL = "https://wsvgny.github.io/blog/"
 languageCode = "en-us"
 title = "William Sevigny"
+disableKinds = ["rss"]
 [markup]
   [markup.goldmark]
     [markup.goldmark.parser]

@@ -13,7 +13,7 @@ hugo.linux
 /.hugo_build.lock
 
 # Post images
-/content/posts/**/images/
+/content/**/images/
 /_local/
 # Claude desktop app preview config
 /.claude/
