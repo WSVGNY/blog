@@ -101,3 +101,145 @@
         max-height: 61.2rem;
     }
 }
+/* --- album --- */
+
+/* The album has two layouts, each written out in full below:
+   narrow screens scroll down one long page, wide screens scroll down one
+   spread per screen.
+   The 700px breakpoint is also used by the script in layouts/_default/album.html. */
+
+.album-chapter {
+    text-transform: uppercase;
+}
+
+.album img {
+    display: block;
+    height: auto;
+}
+
+/* narrow: one long page to scroll down, trips one after the other */
+@media not (min-width: 700px) {
+    .album {
+        padding: 10rem 3rem 12rem;
+    }
+
+    .spread {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        scroll-margin-top: 2rem;
+    }
+
+    .page {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    .page-blank {
+        display: none;
+    }
+
+    /* the cover fills the first screen, so the pictures start below it */
+    .spread-cover {
+        margin-bottom: 0;
+        min-height: calc(100vh - 10rem);
+        min-height: calc(100dvh - 10rem);
+    }
+
+    .album-chapter {
+        margin: 8rem 0 1rem;
+    }
+
+    /* max-height undoes .picture-height-limit, which would squash a full-width portrait */
+    .album img {
+        width: 100%;
+        max-height: none;
+    }
+
+    #album-label {
+        display: none;
+    }
+}
+
+/* wide: scroll down through spreads of two facing pages, one per screen */
+@media (min-width: 700px) {
+    .album-page {
+        overflow: hidden;
+    }
+
+    .album {
+        position: fixed;
+        inset: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        scroll-snap-type: y mandatory;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+    }
+
+    .album::-webkit-scrollbar {
+        display: none;
+    }
+
+    .spread {
+        height: 100%;
+        box-sizing: border-box;
+        padding: 10rem 5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        scroll-snap-align: start;
+    }
+
+    .page {
+        flex: 0 0 50%;
+        min-width: 0;
+        box-sizing: border-box;
+        padding: 0 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .spread-wide .page,
+    .spread-text .page {
+        flex-basis: 100%;
+        padding: 0;
+    }
+
+    /* cover sits top-left under the logo, where the home page list is */
+    .spread-cover {
+        align-items: flex-start;
+    }
+
+    .spread-cover .page {
+        justify-content: flex-start;
+    }
+
+    .album-chapter {
+        margin: 0;
+    }
+
+    /* pictures fit the screen, leaving room for the logo and footer */
+    .album img {
+        width: auto;
+        max-width: calc(100vw - 10rem);
+        max-height: calc(100vh - 20rem);
+        max-height: calc(100dvh - 20rem);
+    }
+
+    .spread-pair img {
+        max-width: calc(50vw - 11rem);
+    }
+
+    /* runs down the right margin, beside the pictures, halfway up the screen */
+    #album-label {
+        position: fixed;
+        right: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        writing-mode: vertical-rl;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+}
