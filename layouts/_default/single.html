@@ -1,19 +1,7 @@
-<html>
-{{ partial "head" .}}
+{{ define "main" }}
+<main class="post">
+    <p class="post-title">{{ .Title }}</p>
 
-<body>
-    <div class="container">
-        {{ partial "header" . }}
-
-        <p style="text-align: center; margin-bottom: 3rem; text-transform: uppercase;">
-            {{ .Title }}
-        </p>
-
-        <div class="post-container">
-            {{.Content}}
-        </div>
-
-        {{ partial "footer" }}
-</body>
-
-</html>
+    {{ .Content }}
+</main>
+{{ end }}

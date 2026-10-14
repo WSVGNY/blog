@@ -3,38 +3,30 @@
 ## Run locally
 
 ```sh
-hugo server
+hugo server --renderToMemory
 ```
 
-The site will be available at `http://localhost:1313/blog/`.
+The site will be available at `http://localhost:1313/blog/`. `--renderToMemory` keeps the server out of `public/`, which `publish.sh` uses.
 
-## Add pictures to the album
+## Add a post
 
-An album is a folder in `content/`, and each folder inside it is one chapter.
-
-1. Make a folder for the trip, e.g. `content/photo-album-01/0006-lisbon/`
-2. Put the pictures in an `images/` folder inside it
-3. Add an `index.md` with a title and a date:
+A post is a folder in `content/posts/` with an `index.md` and an `images/` folder:
 
 ```md
 ---
 title: "Lisbon, 2026"
-date: 2024-01-06
+date: 2024-01-09
 draft: false
 ---
+
+Some text above the pictures.
+
+{{< light-table >}}
+
+Some text below the pictures.
 ```
 
-Chapters are ordered by date, newest first. Pictures are ordered by file name, last first.
-
-For a second album, copy `content/photo-album-01/_index.md` into a new folder and change its title.
-
-## Add a post
-
-A folder in `content/posts/` with an `index.md` and an `images/` folder. To show the pictures, put this in the `index.md`:
-
-```md
-{{< picture-list "images/*">}}
-```
+`{{< light-table >}}` shows the pictures where it is written: all of them small on one sheet, like a contact sheet, ordered by file name, last first. Clicking one opens it big. Posts are listed newest first, by date.
 
 ## Publish
 

@@ -1,12 +1,13 @@
-<html>
-{{ partial "head" .}}
-
-<body class="list-page">
-    <div class="container">
-        {{ partial "header" . }}
-        {{ partial "post-list" . }}
-        {{ partial "footer" }}
-    </div>
-</body>
-
-</html>
+{{ define "main" }}
+<main class="container post-index">
+    <p class="site-name">{{ site.Title }}</p>
+    <ul>
+        {{ range where .Site.RegularPages.ByDate.Reverse "Type" "posts" }}
+        <li>
+            <span class="post-name">{{ .Title }}</span>
+            <a href="{{ .Permalink }}">» click here</a>
+        </li>
+        {{ end }}
+    </ul>
+</main>
+{{ end }}

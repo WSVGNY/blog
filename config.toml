@@ -1,6 +1,6 @@
 baseURL = "https://wsvgny.github.io/blog/"
-languageCode = "en-us"
-title = "William Sevigny"
+locale = "en-us"
+title = "WILLIAMSEVIGNY.COM"
 disableKinds = ["rss"]
 [markup]
   [markup.goldmark]

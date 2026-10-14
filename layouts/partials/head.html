@@ -2,7 +2,7 @@
     <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta charset="utf-8">
-    <title>WILLIAMSEVIGNY.COM</title>
+    <title>{{ site.Title }}</title>
     <meta name="description" content="Pictures">
     <meta name="author" content="William Sevigny">
 
@@ -10,41 +10,37 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- URL
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <base href="{{ .Site.BaseURL }}">
-
     <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="stylesheet" href="/blog/normalize.css">
-    <link rel="stylesheet" href="/blog/skeleton.css">
-    <link rel="stylesheet" href="/blog/styles.css">
-    <link rel="icon" type="image/x-icon" href="/blog/website_v2_no_back.ico">
+    <link rel="stylesheet" href="{{ "normalize.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "skeleton.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "styles.css" | relURL }}">
+    <link rel="icon" type="image/x-icon" href="{{ "website_v2_no_back.ico" | relURL }}">
 
     <!-- Libraries
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe.css" />
-    <link rel="stylesheet" href="/blog/photoswipe-style-override.css" />
+    <link rel="stylesheet" href="{{ "photoswipe-style-override.css" | relURL }}" />
+
+    <script type="module">
+        import PhotoSwipeLightbox from 'https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe-lightbox.esm.min.js';
+        const lightbox = new PhotoSwipeLightbox({
+            gallery: '.pswp-gallery',
+            children: 'a',
+            showAnimationDuration: 200,
+            hideAnimationDuration: 200,
+            imageClickAction: 'close',
+            tapAction: 'zoom',
+            doubleTapAction: false,
+            bgClickAction: 'close',
+            padding: { top: 20, bottom: 20, left: 10, right: 10 },
+            pswpModule: () => import('https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe.esm.min.js')
+        });
+        lightbox.init();
+    </script>
 
     <!-- Fonts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <link rel="preconnect" href="https://rsms.me/">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 </head>
-
-<script type="module">
-    import PhotoSwipeLightbox from 'https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe-lightbox.esm.min.js';
-    const lightbox = new PhotoSwipeLightbox({
-        gallery: '.pswp-gallery',
-        children: 'a',
-        showAnimationDuration: 200,
-        hideAnimationDuration: 200,
-        imageClickAction: 'close',
-        tapAction: 'zoom',
-        doubleTapAction: false,
-        bgClickAction: 'close',
-        padding: { top: 20, bottom: 20, left: 10, right: 10 },
-        pswpModule: () => import('https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe.esm.min.js')
-    });
-    lightbox.init();
-</script>
