@@ -7,4 +7,4 @@ A tiny [macOS application](https://github.com/WSVGNY/cow) built in one evening w
 
 .
 
-{{< light-table >}}
+{{< light-table "images/*" >}}

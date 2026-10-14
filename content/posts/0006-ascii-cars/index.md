@@ -4,7 +4,7 @@ date: 2024-01-06
 draft: false
 ---
 
-{{< light-table >}}
+{{< light-table "images/*" >}}
 
 Created with <https://github.com/neethanwu/ascii-art> and Claude Code.
 

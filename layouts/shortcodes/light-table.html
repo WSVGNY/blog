@@ -1,9 +1,14 @@
 {{/* The post's pictures, small, on one sheet, like a contact sheet from a roll
-     of film. Clicking a picture opens it big. Put {{< light-table >}} in a post
-     where the sheet should go. */}}
+     of film. Clicking a picture opens it big. Put it in a post where the sheet
+     should go, saying which pictures to show: {{< light-table "images/*" >}} */}}
 
-{{/* The photos in the post's images folder, last file name first */}}
-{{ $pictures := .Page.Resources.Match "images/*" }}
+{{ $pattern := .Get 0 }}
+{{ if not $pattern }}
+{{ errorf "%s: light-table needs the pictures to show, e.g. {{< light-table \"images/*\" >}}" .Position }}
+{{ end }}
+
+{{/* The JPEG and PNG files matching the pattern, last file name first */}}
+{{ $pictures := .Page.Resources.Match $pattern }}
 {{ $pictures = where $pictures ".MediaType.SubType" "in" (slice "jpeg" "png") }}
 {{ $pictures = sort $pictures "Name" "desc" }}
 
@@ -11,9 +16,13 @@
     {{ range $pictures }}
     {{/* Some cameras store a tall picture on its side; this turns it upright. */}}
     {{ $upright := .Filter images.AutoOrient }}
-    {{ $isWide := gt $upright.Width $upright.Height }}
     {{ $small := $upright.Resize "x240 webp q75" }}
-    {{ $big := $upright.Resize (cond $isWide "2400x webp q80" "x2400 webp q80") }}
+
+    {{/* The big picture is 2400 pixels on its long side */}}
+    {{ $isLandscape := gt $upright.Width $upright.Height }}
+    {{ $bigSize := cond $isLandscape "2400x webp q80" "x2400 webp q80" }}
+    {{ $big := $upright.Resize $bigSize }}
+
     {{/* Each picture is a gallery of its own, so the big view shows only that one */}}
     <div class="pswp-gallery">
         <a href="{{ $big.RelPermalink }}" data-pswp-width="{{ $big.Width }}" data-pswp-height="{{ $big.Height }}">

@@ -21,12 +21,12 @@ draft: false
 
 Some text above the pictures.
 
-{{< light-table >}}
+{{< light-table "images/*" >}}
 
 Some text below the pictures.
 ```
 
-`{{< light-table >}}` shows the pictures where it is written: all of them small on one sheet, like a contact sheet, ordered by file name, last first. Clicking one opens it big. Posts are listed newest first, by date.
+`{{< light-table "images/*" >}}` shows the pictures matching the pattern, where it is written: all of them small on one sheet, like a contact sheet, ordered by file name, last first. Clicking one opens it big. Posts are listed newest first, by date.
 
 ## Publish
 
