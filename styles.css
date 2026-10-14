@@ -1,8 +1,12 @@
-/* Top logo */
+/* the logo in the top left corner, the links and name in the bottom corners */
 .header-left {
     position: fixed;
     left: 3rem;
     top: 3rem;
+}
+
+.header-left img {
+    height: 4rem;
 }
 
 .footer-left {
@@ -17,187 +21,112 @@
     bottom: 3rem;
 }
 
-@media (min-width: 550px) {
-    .header-left {
-        position: fixed;
-        left: 5rem;
-        top: 3rem;
-    }
+.footer-right p {
+    margin-bottom: 0;
+}
 
+@media (min-width: 550px) {
+    .header-left,
     .footer-left {
-        position: fixed;
         left: 5rem;
-        bottom: 3rem;
     }
 
     .footer-right {
-        position: fixed;
         right: 5rem;
-        bottom: 3rem;
     }
 }
 
-.bottom-margin {
-    margin-bottom: 2rem;
-}
+/* --- list of posts --- */
 
-/* list page container override */
-.list-page .container {
+/* the list sits on the left, in line with the logo */
+.post-index {
     margin-left: 0;
     padding-left: 3rem;
 }
 
-@media (min-width: 550px) {
-    .list-page .container {
-        padding-left: 5rem;
-    }
+.site-name {
+    font-style: italic;
 }
 
-/* post list */
-.post-list {
+.post-index ul {
     list-style-type: none;
     padding: unset;
 }
 
-.post-list-item {
+.post-index li {
     margin-bottom: 0;
 }
 
-/* single post */
-.post-container {
-    margin-bottom: 0rem;
-}
-
-/* --- pictures --- */
-
-.picture-container-no-bottom-margin {
-    width: fit-content;
-    margin: auto;
-    margin-bottom: 0rem;
-}
-
-/* mobile */
-.picture-container-with-bottom-margin {
-    width: fit-content;
-    margin: auto;
-    margin-bottom: 4rem;
-}
-
-.picture-height-limit {
-    max-height: 64rem;
-}
-
-/* desktop */
-@media (min-width: 550px) {
-    .picture-container-with-bottom-margin {
-        width: fit-content;
-        margin: auto;
-        margin-bottom: 10rem;
-    }
-}
-
-@media (min-width: 550px) {
-    .picture-height-limit {
-        max-height: 61.2rem;
-    }
-}
-/* --- album --- */
-
-/* Each page of the album holds one thing, in the centre: the contents,
-   a chapter's title, or one picture.
-   There are two layouts, each written out in full below: narrow screens
-   show the pages close together, wide screens give each page a whole
-   screen's height. Both just scroll. */
-
-.page {
-    text-align: center;
-}
-
-/* nothing below the list, so the contents sit exactly in the centre */
-.page-contents ul {
-    margin-bottom: 0;
-}
-
-.page-chapter {
+.post-name {
     text-transform: uppercase;
 }
 
-/* narrow: the pages close together */
-@media not (min-width: 700px) {
-    .album {
-        padding-bottom: 10rem;
-    }
-
-    /* Pictures are 4rem apart. The gap is the top margin of the lower
-       thing, so nothing hangs below the last picture. */
-    .page {
-        margin-top: 4rem;
-        padding: 0 1.4rem;
-    }
-
-    /* the contents fill the first screen, so the pictures start below it */
-    .page-contents {
-        margin-top: 0;
-        min-height: 100dvh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    /* a chapter's title has 10rem above it and 10rem below it */
-    .page-chapter {
-        margin-top: 10rem;
-    }
-
-    .page-chapter + .page {
-        margin-top: 10rem;
-    }
-
-    .album-counter {
-        display: none;
+@media (min-width: 550px) {
+    .post-index {
+        padding-left: 5rem;
     }
 }
 
-/* wide: every page is as tall as the screen */
-@media (min-width: 700px) {
-    .album {
-        position: fixed;
-        inset: 0;
-        overflow-y: auto;
-        /* for the keyboard, which moves a whole page at a time */
-        scroll-behavior: smooth;
-        scrollbar-width: none;
+/* --- post --- */
+
+/* A post's text, with its pictures as a light table: small, on one sheet,
+   each with its frame number under it like on a film strip. */
+
+.post {
+    padding: 10rem 1.4rem;
+}
+
+.post-title {
+    margin-bottom: 3rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* text keeps a readable width; the sheet of pictures uses the whole page */
+.post > :not(.contact-sheet) {
+    max-width: 61.2rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* room between the sheet and any text that follows it */
+.contact-sheet + * {
+    margin-top: 3rem;
+}
+
+.contact-sheet {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    counter-reset: frame;
+}
+
+.contact-sheet a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    counter-increment: frame;
+}
+
+.contact-sheet a::after {
+    content: counter(frame);
+    display: block;
+}
+
+/* the width and height written on the picture keep its shape while it loads */
+.contact-sheet img {
+    display: block;
+    height: 6rem;
+    width: auto;
+}
+
+@media (min-width: 550px) {
+    .post {
+        padding: 10rem 5rem;
     }
 
-    .album::-webkit-scrollbar {
-        display: none;
-    }
-
-    .page {
-        height: 100%;
-        box-sizing: border-box;
-        /* 7rem keeps a picture clear of the top and bottom corners' text */
-        padding: 7rem 5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    /* Pictures are 612px on their long side. Only on a short or narrow
-       window do they shrink to stay inside the page's padding: 10rem is
-       that padding left plus right, 14rem above plus below. */
-    .album img {
-        max-width: min(61.2rem, calc(100vw - 10rem));
-        max-height: min(61.2rem, calc(100dvh - 14rem));
-    }
-
-    /* page counter: top-right corner, one line 4rem tall */
-    .album-counter {
-        position: fixed;
-        right: 5rem;
-        top: 3rem;
-        line-height: 4rem;
-        text-transform: uppercase;
-        white-space: nowrap;
+    .contact-sheet img {
+        height: 9rem;
     }
 }

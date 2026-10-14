@@ -8,9 +8,7 @@
     cursor: pointer !important;
 }
 
-/* Hide top bar (close, zoom, counter) and navigation arrows */
-.pswp__top-bar,
-.pswp__button--arrow--prev,
-.pswp__button--arrow--next {
+/* Hide top bar (close, zoom, counter) */
+.pswp__top-bar {
     display: none !important;
 }
