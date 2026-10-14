@@ -49,16 +49,16 @@
 
     <script>
         // Keyboard flipping and the page counter for the wide layout, where each
-        // album page fills the screen. Scrolling itself is the browser's own.
-        // On narrow screens the album just scrolls, so the handlers do nothing.
+        // album page is as tall as the screen. Scrolling itself is the browser's own.
+        // On narrow screens the pages have no fixed height, so the handlers do nothing.
         const album = document.querySelector('.album');
         const counter = document.querySelector('.album-counter');
         const pages = album.querySelectorAll('.page');
 
-        // Wide screens show one page per screen.
+        // Wide screens give each page a whole screen's height.
         const wideLayout = window.matchMedia('(min-width: 700px)');
 
-        // Every page is exactly one screen tall.
+        // Every page is exactly one screen tall, so this is the page nearest the top.
         function currentPage() {
             return Math.round(album.scrollTop / album.clientHeight);
         }

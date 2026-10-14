@@ -106,8 +106,8 @@
 /* Each page of the album holds one thing, in the centre: the contents,
    a chapter's title, or one picture.
    There are two layouts, each written out in full below: narrow screens
-   show the pages one under the other in a single scroll, wide screens show
-   one page per screen. */
+   show the pages close together, wide screens give each page a whole
+   screen's height. Both just scroll. */
 
 .page {
     text-align: center;
@@ -122,7 +122,7 @@
     text-transform: uppercase;
 }
 
-/* narrow: the pages one under the other, in a single scroll */
+/* narrow: the pages close together */
 @media not (min-width: 700px) {
     .album {
         padding-bottom: 10rem;
@@ -158,13 +158,13 @@
     }
 }
 
-/* wide: one page per screen, scrolled through one at a time */
+/* wide: every page is as tall as the screen */
 @media (min-width: 700px) {
     .album {
         position: fixed;
         inset: 0;
         overflow-y: auto;
-        scroll-snap-type: y mandatory;
+        /* for the keyboard, which moves a whole page at a time */
         scroll-behavior: smooth;
         scrollbar-width: none;
     }
@@ -181,9 +181,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        scroll-snap-align: start;
-        /* a fast scroll still stops on every page instead of flying past several */
-        scroll-snap-stop: always;
     }
 
     /* Pictures are 612px on their long side. Only on a short or narrow
