@@ -25,7 +25,7 @@ should go, saying which pictures to show: {{< light-table "images/*" >}}
     {{ $big := $upright.Fit "2400x2400 webp q80" }}
 
     {{/* Each picture is a gallery of its own, so the big view shows only that one */}}
-    <div class="pswp-gallery">
+    <div class="frame pswp-gallery">
         <a href="{{ $big.RelPermalink }}" data-pswp-width="{{ $big.Width }}" data-pswp-height="{{ $big.Height }}">
             <img src="{{ $small.RelPermalink }}" width="{{ $small.Width }}" height="{{ $small.Height }}" loading="lazy">
         </a>

@@ -43,6 +43,12 @@
     }
 }
 
+/* The page's own 10rem margin is the space under the last thing on it,
+   whatever that last thing is: nothing adds its own margin to it. */
+main > :last-child {
+    margin-bottom: 0;
+}
+
 /* --- list of posts --- */
 
 /* the list sits on the left, in line with the logo */
@@ -86,17 +92,15 @@
     text-transform: uppercase;
 }
 
-/* room between the sheet and any text that follows it */
-.contact-sheet + * {
-    margin-top: 3rem;
-}
-
 /* Every frame gets the same square, like frames on a roll of film: a
    landscape and a portrait have the same long side, and each picture sits
    in the middle of its square. The squares line up in columns, with the
-   frame number under each one: four columns across a phone, and as many
-   squares of 9rem as fit on a wider screen. */
+   frame number under each one: four columns across a phone, and on a
+   wider screen as many squares of at least 9rem as fit. Either way the
+   columns share the whole width, so the sheet lines up with the text.
+   Around the sheet, the same 3rem as between the title and what follows. */
 .contact-sheet {
+    margin: 3rem 0;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
@@ -104,12 +108,12 @@
 }
 
 /* a frame: the square with its picture, and the frame number under it */
-.contact-sheet > div {
+.frame {
     counter-increment: frame;
 }
 
 /* the frame number: 01, 02 …, small, on the left */
-.contact-sheet > div::after {
+.frame::after {
     content: counter(frame, decimal-leading-zero);
     display: block;
     font-size: 0.9em;
@@ -126,9 +130,9 @@
     container-type: inline-size;
 }
 
-/* 100cqw is the square's side */
+/* The picture fits in the square, whose side is 100cqw. Its width and
+   height attributes only give its shape while it loads, hence the autos. */
 .contact-sheet img {
-    display: block;
     width: auto;
     height: auto;
     max-width: 100cqw;
@@ -137,7 +141,6 @@
 
 @media (min-width: 550px) {
     .contact-sheet {
-        grid-template-columns: repeat(auto-fill, 9rem);
-        justify-content: center;
+        grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
     }
 }
