@@ -1,4 +1,11 @@
-/* the logo in the top left corner, the links and name in the bottom corners */
+/* the logo in the top left corner, the links and name in the bottom corners,
+   above everything else, including a picture opened big */
+.header-left,
+.footer-left,
+.footer-right {
+    z-index: 2;
+}
+
 .header-left {
     position: fixed;
     left: 3rem;
@@ -70,11 +77,8 @@
 /* --- post --- */
 
 /* A post's text, with its pictures as a light table: small, on one sheet,
-   each with its frame number under it like on a film strip. */
-
-.post {
-    padding: 10rem 1.4rem;
-}
+   each with its frame number under it like on a film strip. Text and sheet
+   share the site's container width. */
 
 .post-title {
     margin-bottom: 3rem;
@@ -82,51 +86,58 @@
     text-transform: uppercase;
 }
 
-/* text keeps a readable width; the sheet of pictures uses the whole page */
-.post > :not(.contact-sheet) {
-    max-width: 61.2rem;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 /* room between the sheet and any text that follows it */
 .contact-sheet + * {
     margin-top: 3rem;
 }
 
+/* Every frame gets the same square, like frames on a roll of film: a
+   landscape and a portrait have the same long side, and each picture sits
+   in the middle of its square. The squares line up in columns, with the
+   frame number under each one: four columns across a phone, and as many
+   squares of 9rem as fit on a wider screen. */
 .contact-sheet {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
     counter-reset: frame;
 }
 
-.contact-sheet a {
-    display: block;
-    color: inherit;
-    text-decoration: none;
+/* a frame: the square with its picture, and the frame number under it */
+.contact-sheet > div {
     counter-increment: frame;
 }
 
-.contact-sheet a::after {
-    content: counter(frame);
+/* the frame number: 01, 02 …, small, on the left */
+.contact-sheet > div::after {
+    content: counter(frame, decimal-leading-zero);
     display: block;
+    font-size: 0.9em;
 }
 
-/* the width and height written on the picture keep its shape while it loads */
+/* a square as wide as its column, with the picture whole in the middle;
+   the picture's own box is exactly what you see, so opening and closing
+   the big view grows from and shrinks back onto the picture itself */
+.contact-sheet a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+    container-type: inline-size;
+}
+
+/* 100cqw is the square's side */
 .contact-sheet img {
     display: block;
-    height: 6rem;
     width: auto;
+    height: auto;
+    max-width: 100cqw;
+    max-height: 100cqw;
 }
 
 @media (min-width: 550px) {
-    .post {
-        padding: 10rem 5rem;
-    }
-
-    .contact-sheet img {
-        height: 9rem;
+    .contact-sheet {
+        grid-template-columns: repeat(auto-fill, 9rem);
+        justify-content: center;
     }
 }

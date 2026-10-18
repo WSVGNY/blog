@@ -1,6 +1,8 @@
-{{/* The post's pictures, small, on one sheet, like a contact sheet from a roll
-     of film. Clicking a picture opens it big. Put it in a post where the sheet
-     should go, saying which pictures to show: {{< light-table "images/*" >}} */}}
+{{/*
+The post's pictures, small, on one sheet, like a contact sheet from a roll
+of film. Clicking a picture opens it big. Put it in a post where the sheet
+should go, saying which pictures to show: {{< light-table "images/*" >}} 
+*/}}
 
 {{ $pattern := .Get 0 }}
 {{ if not $pattern }}
@@ -18,10 +20,9 @@
     {{ $upright := .Filter images.AutoOrient }}
     {{ $small := $upright.Resize "x240 webp q75" }}
 
-    {{/* The big picture is 2400 pixels on its long side */}}
-    {{ $isLandscape := gt $upright.Width $upright.Height }}
-    {{ $bigSize := cond $isLandscape "2400x webp q80" "x2400 webp q80" }}
-    {{ $big := $upright.Resize $bigSize }}
+    {{/* The big picture is at most 2400 pixels on its long side, and a smaller
+         picture keeps its own size: enlarging would only make it blurry. */}}
+    {{ $big := $upright.Fit "2400x2400 webp q80" }}
 
     {{/* Each picture is a gallery of its own, so the big view shows only that one */}}
     <div class="pswp-gallery">
