@@ -1,4 +1,4 @@
-/* Under the logo and footer, which stay on top */
+/* Under the logo, which stays on top, and over the footer */
 .pswp {
     --pswp-root-z-index: 1;
 }
