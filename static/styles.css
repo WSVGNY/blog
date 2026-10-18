@@ -82,9 +82,8 @@ main > :last-child {
 
 /* --- post --- */
 
-/* A post's text, with its pictures as a light table: small, on one sheet,
-   each with its frame number under it like on a film strip. Text and sheet
-   share the site's container width. */
+/* A post's text, with its pictures as a light table: small, on one sheet.
+   Text and sheet share the site's container width. */
 
 .post-title {
     margin-bottom: 3rem;
@@ -94,29 +93,16 @@ main > :last-child {
 
 /* Every frame gets the same square, like frames on a roll of film: a
    landscape and a portrait have the same long side, and each picture sits
-   in the middle of its square. The squares line up in columns, with the
-   frame number under each one: four columns across a phone, and on a
+   in the middle of its square. The squares line up in columns: four
+   across a phone, and on a
    wider screen as many squares of at least 9rem as fit. Either way the
    columns share the whole width, so the sheet lines up with the text.
    Around the sheet, the same 3rem as between the title and what follows. */
 .contact-sheet {
     margin: 3rem 0;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1rem;
-    counter-reset: frame;
-}
-
-/* a frame: the square with its picture, and the frame number under it */
-.frame {
-    counter-increment: frame;
-}
-
-/* the frame number: 01, 02 …, small, on the left */
-.frame::after {
-    content: counter(frame, decimal-leading-zero);
-    display: block;
-    font-size: 0.9em;
 }
 
 /* a square as wide as its column, with the picture whole in the middle;
