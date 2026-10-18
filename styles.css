@@ -1,15 +1,22 @@
-/* the logo in the top left corner, the links and name in the bottom corners,
-   above everything else, including a picture opened big */
-.header-left,
-.footer-left,
-.footer-right {
-    z-index: 2;
+/* The distance from the sides of the screen to the logo, the footer and
+   the content of every page. */
+:root {
+    --edge: 3rem;
 }
 
+@media (min-width: 550px) {
+    :root {
+        --edge: 5rem;
+    }
+}
+
+/* the logo in the top left corner, above everything, even a picture opened
+   big; the links and name in the bottom corners, behind such a picture */
 .header-left {
     position: fixed;
-    left: 3rem;
+    left: var(--edge);
     top: 3rem;
+    z-index: 2;
 }
 
 .header-left img {
@@ -18,29 +25,18 @@
 
 .footer-left {
     position: fixed;
-    left: 3rem;
+    left: var(--edge);
     bottom: 3rem;
 }
 
 .footer-right {
     position: fixed;
-    right: 3rem;
+    right: var(--edge);
     bottom: 3rem;
 }
 
 .footer-right p {
     margin-bottom: 0;
-}
-
-@media (min-width: 550px) {
-    .header-left,
-    .footer-left {
-        left: 5rem;
-    }
-
-    .footer-right {
-        right: 5rem;
-    }
 }
 
 /* The page's own 10rem margin is the space under the last thing on it,
@@ -54,7 +50,7 @@ main > :last-child {
 /* the list sits on the left, in line with the logo */
 .post-index {
     margin-left: 0;
-    padding-left: 3rem;
+    padding-left: var(--edge);
 }
 
 .site-name {
@@ -74,16 +70,15 @@ main > :last-child {
     text-transform: uppercase;
 }
 
-@media (min-width: 550px) {
-    .post-index {
-        padding-left: 5rem;
-    }
-}
-
 /* --- post --- */
 
 /* A post's text, with its pictures as a light table: small, on one sheet.
-   Text and sheet share the site's container width. */
+   Text and sheet share one centred column, at most 61.2rem wide and never
+   closer to the sides of the screen than the logo and footer. */
+.post {
+    padding: 0 var(--edge);
+    max-width: calc(61.2rem + 2 * var(--edge));
+}
 
 .post-title {
     margin-bottom: 3rem;
@@ -94,8 +89,8 @@ main > :last-child {
 /* Every frame gets the same square, like frames on a roll of film: a
    landscape and a portrait have the same long side, and each picture sits
    in the middle of its square. The squares line up in columns: four
-   across a phone, and on a
-   wider screen as many squares of at least 9rem as fit. Either way the
+   across a phone, and on a wider screen as many squares of at least 9rem
+   as fit. Either way the
    columns share the whole width, so the sheet lines up with the text.
    Around the sheet, the same 3rem as between the title and what follows. */
 .contact-sheet {
