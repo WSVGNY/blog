@@ -1,3 +1,8 @@
+/* Under the logo and footer, which stay on top */
+.pswp {
+    --pswp-root-z-index: 1;
+}
+
 /* White background instead of black */
 .pswp__bg {
     background: #fff !important;
