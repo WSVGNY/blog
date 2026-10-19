@@ -10,21 +10,17 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- URL
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <base href="{{ .Site.BaseURL }}">
-
     <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="stylesheet" href="/blog/normalize.css">
-    <link rel="stylesheet" href="/blog/skeleton.css">
-    <link rel="stylesheet" href="/blog/styles.css">
-    <link rel="icon" type="image/x-icon" href="/blog/website_v2_no_back.ico">
+    <link rel="stylesheet" href="/normalize.css">
+    <link rel="stylesheet" href="/skeleton.css">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/x-icon" href="/website_v2_no_back.ico">
 
     <!-- Libraries
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe.css" />
-    <link rel="stylesheet" href="/blog/photoswipe-style-override.css" />
+    <link rel="stylesheet" href="/photoswipe-style-override.css" />
 
     <script type="module">
         import PhotoSwipeLightbox from 'https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe-lightbox.esm.min.js';
@@ -55,6 +51,10 @@
         lightbox.on('pointerMove', (event) => {
             if (desktopSize.matches) event.preventDefault();
         });
+
+        // While a big picture loads, its small picture shows in its place,
+        // stretched, for every picture and not only the one first opened.
+        lightbox.addFilter('placeholderSrc', (placeholderSrc, content) => content.data.msrc);
 
         lightbox.init();
     </script>

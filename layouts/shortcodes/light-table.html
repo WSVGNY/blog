@@ -24,9 +24,9 @@ should go, saying which pictures to show: {{< light-table "images/*" >}}
     {{ $upright := .Filter images.AutoOrient }}
     {{ $small := $upright.Resize "x240 webp q75" }}
 
-    {{/* The big picture is at most 2400 pixels on its long side, and a smaller
+    {{/* The big picture is at most 1600 pixels on its long side, and a smaller
          picture keeps its own size: enlarging would only make it blurry. */}}
-    {{ $big := $upright.Fit "2400x2400 webp q80" }}
+    {{ $big := $upright.Fit "1600x1600 webp q80" }}
 
     <a href="{{ $big.RelPermalink }}" data-pswp-width="{{ $big.Width }}" data-pswp-height="{{ $big.Height }}">
         <img src="{{ $small.RelPermalink }}" width="{{ $small.Width }}" height="{{ $small.Height }}" loading="lazy">

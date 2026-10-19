@@ -6,7 +6,7 @@
 hugo server --renderToMemory
 ```
 
-The site will be available at `http://localhost:1313/blog/`. `--renderToMemory` keeps the server out of `public/`, which `publish.sh` uses.
+The site will be available at `http://localhost:1313/`. `--renderToMemory` keeps the server out of `public/`, which `publish.sh` uses.
 
 ## Add a post
 

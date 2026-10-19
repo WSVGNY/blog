@@ -1,4 +1,4 @@
-baseURL = "https://wsvgny.github.io/blog/"
+baseURL = "https://williamsevigny.com/"
 locale = "en-us"
 title = "WILLIAMSEVIGNY.COM"
 disableKinds = ["rss"]
