@@ -12,17 +12,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
-    <base href="https://wsvgny.github.io/blog/">
-
-    
-    <link rel="stylesheet" href="/blog/normalize.css">
-    <link rel="stylesheet" href="/blog/skeleton.css">
-    <link rel="stylesheet" href="/blog/styles.css">
-    <link rel="icon" type="image/x-icon" href="/blog/website_v2_no_back.ico">
+    <link rel="stylesheet" href="/normalize.css">
+    <link rel="stylesheet" href="/skeleton.css">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/x-icon" href="/website_v2_no_back.ico">
 
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe.css" />
-    <link rel="stylesheet" href="/blog/photoswipe-style-override.css" />
+    <link rel="stylesheet" href="/photoswipe-style-override.css" />
 
     <script type="module">
         import PhotoSwipeLightbox from 'https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe-lightbox.esm.min.js';
@@ -54,6 +51,10 @@
             if (desktopSize.matches) event.preventDefault();
         });
 
+        
+        
+        lightbox.addFilter('placeholderSrc', (placeholderSrc, content) => content.data.msrc);
+
         lightbox.init();
     </script>
 
@@ -65,8 +66,8 @@
 
 <body>
     <div class="header-left">
-    <a href="/blog/">
-        <img src="/blog/earth_rotating.gif">
+    <a href="/">
+        <img src="/earth_rotating.gif">
     </a>
 </div>
 
@@ -77,22 +78,22 @@
         
         <li>
             <span class="post-name">Photo Album, 2026</span>
-            <a href="https://wsvgny.github.io/blog/posts/0009-album-2026/">» click here</a>
+            <a href="https://williamsevigny.com/posts/0009-album-2026/">» click here</a>
         </li>
         
         <li>
             <span class="post-name">Photo Album, Archive</span>
-            <a href="https://wsvgny.github.io/blog/posts/0008-album-archive/">» click here</a>
+            <a href="https://williamsevigny.com/posts/0008-album-archive/">» click here</a>
         </li>
         
         <li>
             <span class="post-name">Cow, 2026</span>
-            <a href="https://wsvgny.github.io/blog/posts/0007-cow/">» click here</a>
+            <a href="https://williamsevigny.com/posts/0007-cow/">» click here</a>
         </li>
         
         <li>
             <span class="post-name">Ascii Motorsport, 2026</span>
-            <a href="https://wsvgny.github.io/blog/posts/0006-ascii-cars/">» click here</a>
+            <a href="https://williamsevigny.com/posts/0006-ascii-cars/">» click here</a>
         </li>
         
     </ul>
