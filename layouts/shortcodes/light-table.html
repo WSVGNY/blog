@@ -17,7 +17,8 @@ should go, saying which pictures to show: {{< light-table "images/*" >}}
 {{ errorf "%s: light-table found no pictures matching %q" .Position $pattern }}
 {{ end }}
 
-<div class="contact-sheet">
+{{/* The sheet is one gallery, so the big view can go from one picture to the next */}}
+<div class="contact-sheet pswp-gallery">
     {{ range $pictures }}
     {{/* Some cameras store a tall picture on its side; this turns it upright. */}}
     {{ $upright := .Filter images.AutoOrient }}
@@ -27,11 +28,8 @@ should go, saying which pictures to show: {{< light-table "images/*" >}}
          picture keeps its own size: enlarging would only make it blurry. */}}
     {{ $big := $upright.Fit "2400x2400 webp q80" }}
 
-    {{/* Each picture is a gallery of its own, so the big view shows only that one */}}
-    <div class="pswp-gallery">
-        <a href="{{ $big.RelPermalink }}" data-pswp-width="{{ $big.Width }}" data-pswp-height="{{ $big.Height }}">
-            <img src="{{ $small.RelPermalink }}" width="{{ $small.Width }}" height="{{ $small.Height }}" loading="lazy">
-        </a>
-    </div>
+    <a href="{{ $big.RelPermalink }}" data-pswp-width="{{ $big.Width }}" data-pswp-height="{{ $big.Height }}">
+        <img src="{{ $small.RelPermalink }}" width="{{ $small.Width }}" height="{{ $small.Height }}" loading="lazy">
+    </a>
     {{ end }}
 </div>

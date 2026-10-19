@@ -28,6 +28,10 @@
 
     <script type="module">
         import PhotoSwipeLightbox from 'https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe-lightbox.esm.min.js';
+
+        // A desktop-size screen is 550px wide or more; narrower is phone-size.
+        const desktopSize = window.matchMedia('(min-width: 550px)');
+
         const lightbox = new PhotoSwipeLightbox({
             gallery: '.pswp-gallery',
             children: 'a',
@@ -37,9 +41,21 @@
             tapAction: 'zoom',
             doubleTapAction: false,
             bgClickAction: 'close',
-            padding: { top: 20, bottom: 20, left: 10, right: 10 },
+            // On a desktop-size screen, 75px arrows show at the sides, and
+            // pictures keep clear of them.
+            paddingFn: () => {
+                const side = desktopSize.matches ? 80 : 10;
+                return { top: 20, bottom: 20, left: side, right: side };
+            },
             pswpModule: () => import('https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe.esm.min.js')
         });
+
+        // On a desktop-size screen, dragging doesn't move the picture; the
+        // arrows and keys change it. On a phone-size screen, swiping does.
+        lightbox.on('pointerMove', (event) => {
+            if (desktopSize.matches) event.preventDefault();
+        });
+
         lightbox.init();
     </script>
 
