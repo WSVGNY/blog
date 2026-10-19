@@ -25,6 +25,10 @@
 
     <script type="module">
         import PhotoSwipeLightbox from 'https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe-lightbox.esm.min.js';
+
+        
+        const desktopSize = window.matchMedia('(min-width: 550px)');
+
         const lightbox = new PhotoSwipeLightbox({
             gallery: '.pswp-gallery',
             children: 'a',
@@ -34,9 +38,21 @@
             tapAction: 'zoom',
             doubleTapAction: false,
             bgClickAction: 'close',
-            padding: { top: 20, bottom: 20, left: 10, right: 10 },
+            
+            
+            paddingFn: () => {
+                const side = desktopSize.matches ? 80 : 10;
+                return { top: 20, bottom: 20, left: side, right: side };
+            },
             pswpModule: () => import('https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe.esm.min.js')
         });
+
+        
+        
+        lightbox.on('pointerMove', (event) => {
+            if (desktopSize.matches) event.preventDefault();
+        });
+
         lightbox.init();
     </script>
 

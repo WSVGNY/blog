@@ -25,6 +25,10 @@
 
     <script type="module">
         import PhotoSwipeLightbox from 'https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe-lightbox.esm.min.js';
+
+        
+        const desktopSize = window.matchMedia('(min-width: 550px)');
+
         const lightbox = new PhotoSwipeLightbox({
             gallery: '.pswp-gallery',
             children: 'a',
@@ -34,9 +38,21 @@
             tapAction: 'zoom',
             doubleTapAction: false,
             bgClickAction: 'close',
-            padding: { top: 20, bottom: 20, left: 10, right: 10 },
+            
+            
+            paddingFn: () => {
+                const side = desktopSize.matches ? 80 : 10;
+                return { top: 20, bottom: 20, left: side, right: side };
+            },
             pswpModule: () => import('https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe.esm.min.js')
         });
+
+        
+        
+        lightbox.on('pointerMove', (event) => {
+            if (desktopSize.matches) event.preventDefault();
+        });
+
         lightbox.init();
     </script>
 
@@ -67,7 +83,8 @@
 
 
 
-<div class="contact-sheet">
+
+<div class="contact-sheet pswp-gallery">
     
     
     
@@ -76,12 +93,9 @@
     
     
 
-    
-    <div class="pswp-gallery">
-        <a href="/blog/posts/0009-album-2026/images/014_hu_bb3b46b220d8081d.webp" data-pswp-width="1590" data-pswp-height="2400">
-            <img src="/blog/posts/0009-album-2026/images/014_hu_ba57eeb5693a3cf2.webp" width="159" height="240" loading="lazy">
-        </a>
-    </div>
+    <a href="/blog/posts/0009-album-2026/images/014_hu_bb3b46b220d8081d.webp" data-pswp-width="1590" data-pswp-height="2400">
+        <img src="/blog/posts/0009-album-2026/images/014_hu_ba57eeb5693a3cf2.webp" width="159" height="240" loading="lazy">
+    </a>
     
     
     
@@ -90,12 +104,9 @@
     
     
 
-    
-    <div class="pswp-gallery">
-        <a href="/blog/posts/0009-album-2026/images/013_hu_ecf4298169ce1aa.webp" data-pswp-width="1590" data-pswp-height="2400">
-            <img src="/blog/posts/0009-album-2026/images/013_hu_89f5a00be77c2c89.webp" width="159" height="240" loading="lazy">
-        </a>
-    </div>
+    <a href="/blog/posts/0009-album-2026/images/013_hu_ecf4298169ce1aa.webp" data-pswp-width="1590" data-pswp-height="2400">
+        <img src="/blog/posts/0009-album-2026/images/013_hu_89f5a00be77c2c89.webp" width="159" height="240" loading="lazy">
+    </a>
     
     
     
@@ -104,12 +115,9 @@
     
     
 
-    
-    <div class="pswp-gallery">
-        <a href="/blog/posts/0009-album-2026/images/012_hu_67010adfc10c4cf1.webp" data-pswp-width="2400" data-pswp-height="1600">
-            <img src="/blog/posts/0009-album-2026/images/012_hu_66454247ee37dcbd.webp" width="360" height="240" loading="lazy">
-        </a>
-    </div>
+    <a href="/blog/posts/0009-album-2026/images/012_hu_67010adfc10c4cf1.webp" data-pswp-width="2400" data-pswp-height="1600">
+        <img src="/blog/posts/0009-album-2026/images/012_hu_66454247ee37dcbd.webp" width="360" height="240" loading="lazy">
+    </a>
     
     
     
@@ -118,12 +126,9 @@
     
     
 
-    
-    <div class="pswp-gallery">
-        <a href="/blog/posts/0009-album-2026/images/011_hu_cbe8e8b65abedb11.webp" data-pswp-width="2400" data-pswp-height="1601">
-            <img src="/blog/posts/0009-album-2026/images/011_hu_388ab49dee29fa87.webp" width="360" height="240" loading="lazy">
-        </a>
-    </div>
+    <a href="/blog/posts/0009-album-2026/images/011_hu_cbe8e8b65abedb11.webp" data-pswp-width="2400" data-pswp-height="1601">
+        <img src="/blog/posts/0009-album-2026/images/011_hu_388ab49dee29fa87.webp" width="360" height="240" loading="lazy">
+    </a>
     
     
     
@@ -132,12 +137,9 @@
     
     
 
-    
-    <div class="pswp-gallery">
-        <a href="/blog/posts/0009-album-2026/images/010_hu_8f9e993e13c9af73.webp" data-pswp-width="2400" data-pswp-height="1600">
-            <img src="/blog/posts/0009-album-2026/images/010_hu_499d17a8e236eaf6.webp" width="360" height="240" loading="lazy">
-        </a>
-    </div>
+    <a href="/blog/posts/0009-album-2026/images/010_hu_8f9e993e13c9af73.webp" data-pswp-width="2400" data-pswp-height="1600">
+        <img src="/blog/posts/0009-album-2026/images/010_hu_499d17a8e236eaf6.webp" width="360" height="240" loading="lazy">
+    </a>
     
     
     
@@ -146,12 +148,9 @@
     
     
 
-    
-    <div class="pswp-gallery">
-        <a href="/blog/posts/0009-album-2026/images/009_hu_f90158b6d9e0e4da.webp" data-pswp-width="2400" data-pswp-height="1600">
-            <img src="/blog/posts/0009-album-2026/images/009_hu_e89c0070f6e3dffc.webp" width="360" height="240" loading="lazy">
-        </a>
-    </div>
+    <a href="/blog/posts/0009-album-2026/images/009_hu_f90158b6d9e0e4da.webp" data-pswp-width="2400" data-pswp-height="1600">
+        <img src="/blog/posts/0009-album-2026/images/009_hu_e89c0070f6e3dffc.webp" width="360" height="240" loading="lazy">
+    </a>
     
     
     
@@ -160,12 +159,9 @@
     
     
 
-    
-    <div class="pswp-gallery">
-        <a href="/blog/posts/0009-album-2026/images/008_hu_8ff9682b1562de82.webp" data-pswp-width="1600" data-pswp-height="2400">
-            <img src="/blog/posts/0009-album-2026/images/008_hu_2c8915685207b51d.webp" width="160" height="240" loading="lazy">
-        </a>
-    </div>
+    <a href="/blog/posts/0009-album-2026/images/008_hu_8ff9682b1562de82.webp" data-pswp-width="1600" data-pswp-height="2400">
+        <img src="/blog/posts/0009-album-2026/images/008_hu_2c8915685207b51d.webp" width="160" height="240" loading="lazy">
+    </a>
     
     
     
@@ -174,12 +170,9 @@
     
     
 
-    
-    <div class="pswp-gallery">
-        <a href="/blog/posts/0009-album-2026/images/007_hu_354543f9dab7ca30.webp" data-pswp-width="1599" data-pswp-height="2400">
-            <img src="/blog/posts/0009-album-2026/images/007_hu_af49c674ccdc8ac4.webp" width="160" height="240" loading="lazy">
-        </a>
-    </div>
+    <a href="/blog/posts/0009-album-2026/images/007_hu_354543f9dab7ca30.webp" data-pswp-width="1599" data-pswp-height="2400">
+        <img src="/blog/posts/0009-album-2026/images/007_hu_af49c674ccdc8ac4.webp" width="160" height="240" loading="lazy">
+    </a>
     
     
     
@@ -188,12 +181,9 @@
     
     
 
-    
-    <div class="pswp-gallery">
-        <a href="/blog/posts/0009-album-2026/images/006_hu_1efd29c4e718a243.webp" data-pswp-width="2400" data-pswp-height="1600">
-            <img src="/blog/posts/0009-album-2026/images/006_hu_c4ef4864d5644557.webp" width="360" height="240" loading="lazy">
-        </a>
-    </div>
+    <a href="/blog/posts/0009-album-2026/images/006_hu_1efd29c4e718a243.webp" data-pswp-width="2400" data-pswp-height="1600">
+        <img src="/blog/posts/0009-album-2026/images/006_hu_c4ef4864d5644557.webp" width="360" height="240" loading="lazy">
+    </a>
     
     
     
@@ -202,12 +192,9 @@
     
     
 
-    
-    <div class="pswp-gallery">
-        <a href="/blog/posts/0009-album-2026/images/005_hu_df0c6e00a0abf489.webp" data-pswp-width="1600" data-pswp-height="2400">
-            <img src="/blog/posts/0009-album-2026/images/005_hu_b9a0dfd88b4c70fd.webp" width="160" height="240" loading="lazy">
-        </a>
-    </div>
+    <a href="/blog/posts/0009-album-2026/images/005_hu_df0c6e00a0abf489.webp" data-pswp-width="1600" data-pswp-height="2400">
+        <img src="/blog/posts/0009-album-2026/images/005_hu_b9a0dfd88b4c70fd.webp" width="160" height="240" loading="lazy">
+    </a>
     
     
     
@@ -216,12 +203,9 @@
     
     
 
-    
-    <div class="pswp-gallery">
-        <a href="/blog/posts/0009-album-2026/images/004_hu_8e0b934f466eb077.webp" data-pswp-width="2400" data-pswp-height="1600">
-            <img src="/blog/posts/0009-album-2026/images/004_hu_af5144a87a4af6d9.webp" width="360" height="240" loading="lazy">
-        </a>
-    </div>
+    <a href="/blog/posts/0009-album-2026/images/004_hu_8e0b934f466eb077.webp" data-pswp-width="2400" data-pswp-height="1600">
+        <img src="/blog/posts/0009-album-2026/images/004_hu_af5144a87a4af6d9.webp" width="360" height="240" loading="lazy">
+    </a>
     
     
     
@@ -230,12 +214,9 @@
     
     
 
-    
-    <div class="pswp-gallery">
-        <a href="/blog/posts/0009-album-2026/images/003_hu_6f49dc5ab4eb0a38.webp" data-pswp-width="1818" data-pswp-height="1228">
-            <img src="/blog/posts/0009-album-2026/images/003_hu_a171b228b9588788.webp" width="355" height="240" loading="lazy">
-        </a>
-    </div>
+    <a href="/blog/posts/0009-album-2026/images/003_hu_6f49dc5ab4eb0a38.webp" data-pswp-width="1818" data-pswp-height="1228">
+        <img src="/blog/posts/0009-album-2026/images/003_hu_a171b228b9588788.webp" width="355" height="240" loading="lazy">
+    </a>
     
     
     
@@ -244,12 +225,9 @@
     
     
 
-    
-    <div class="pswp-gallery">
-        <a href="/blog/posts/0009-album-2026/images/002_hu_df796d3d16c1af1a.webp" data-pswp-width="1818" data-pswp-height="1228">
-            <img src="/blog/posts/0009-album-2026/images/002_hu_82a54fe8b7bde5f5.webp" width="355" height="240" loading="lazy">
-        </a>
-    </div>
+    <a href="/blog/posts/0009-album-2026/images/002_hu_df796d3d16c1af1a.webp" data-pswp-width="1818" data-pswp-height="1228">
+        <img src="/blog/posts/0009-album-2026/images/002_hu_82a54fe8b7bde5f5.webp" width="355" height="240" loading="lazy">
+    </a>
     
     
     
@@ -258,12 +236,9 @@
     
     
 
-    
-    <div class="pswp-gallery">
-        <a href="/blog/posts/0009-album-2026/images/001_hu_5155c2802f10aa9.webp" data-pswp-width="1818" data-pswp-height="1228">
-            <img src="/blog/posts/0009-album-2026/images/001_hu_45291619e2043869.webp" width="355" height="240" loading="lazy">
-        </a>
-    </div>
+    <a href="/blog/posts/0009-album-2026/images/001_hu_5155c2802f10aa9.webp" data-pswp-width="1818" data-pswp-height="1228">
+        <img src="/blog/posts/0009-album-2026/images/001_hu_45291619e2043869.webp" width="355" height="240" loading="lazy">
+    </a>
     
 </div>
 

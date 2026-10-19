@@ -1,6 +1,14 @@
-/* Under the logo, which stays on top, and over the footer */
 .pswp {
+    /* Under the logo, which stays on top, and over the footer */
     --pswp-root-z-index: 1;
+
+    /* Arrows in the site's text colour, without the outline meant for a
+       dark background */
+    --pswp-icon-color: #222;
+    --pswp-icon-stroke-width: 0;
+
+    /* No dark placeholder showing through pictures with transparent corners */
+    --pswp-placeholder-bg: transparent;
 }
 
 /* White background instead of black */
@@ -16,4 +24,19 @@
 /* Hide top bar (close, zoom, counter) */
 .pswp__top-bar {
     display: none !important;
+}
+
+/* Arrows on a desktop-size screen, 550px wide or more. PhotoSwipe hides
+   them on a touch screen; this shows them there too. */
+@media (min-width: 550px) {
+    .pswp--touch .pswp__button--arrow {
+        visibility: visible;
+    }
+}
+
+/* No arrows on a phone-size screen; swiping changes the picture there */
+@media not (min-width: 550px) {
+    .pswp__button--arrow {
+        display: none;
+    }
 }
